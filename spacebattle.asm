@@ -2,7 +2,7 @@
 ; * Jogo Batalha Espacial
 ; * Arquitectura de Computadores (2012/2013)
 ; *
-; * Autores:  Paulo Cabeças   76358
+; * Autores:  Paulo Cabeï¿½as   76358
 ; *           Marisa Roque    76653
 ; *           Sara Santos     76358
 ; *********************************************************************************
@@ -13,29 +13,29 @@
 ; *********************************************************************************
 DOIS			EQU 2H
 QUATRO			EQU 4H
-OITO			EQU	8H
+OITO			EQU 8H
 DEZ 			EQU 10			; base decimal
-TAMANHO_PX		EQU 32			; pixeis, ecra é sempre quadrado
+TAMANHO_PX		EQU 32			; pixeis, ecra ï¿½ sempre quadrado
 LIMITE_64		EQU 64			; limite superior na escrita de palavras no pixelscreen
 LIMITE_128		EQU 128			; limite superior na escrita de palavras no pixelscreen
-PX_SCREEN		EQU 8000H		; endereço do pixelscreen (inicio)
-TECLADO_OUT		EQU	0C000H		; endereço do porto de E/S do teclado
+PX_SCREEN		EQU 8000H		; endereï¿½o do pixelscreen (inicio)
+TECLADO_OUT		EQU 0C000H		; endereï¿½o do porto de E/S do teclado
 TECLADO_IN		EQU 0E000h
-DISPLAY 		EQU 0A000H		; endereço do porto dos displays hexadecimais
-NORMAL			EQU 0			; estado_jogo: situação normal de jogo
+DISPLAY 		EQU 0A000H		; endereï¿½o do porto dos displays hexadecimais
+NORMAL			EQU 0			; estado_jogo: situaï¿½ï¿½o normal de jogo
 PAUSADO			EQU 1			; estado_jogo: jogo em pausa
 TERMINADO		EQU 2			; estado_jogo: jogo terminado
 
 ; *********************************************************************************
 ; * Configuracoes
 ; *********************************************************************************
-ENERGIA_INICIAL		EQU	80
-ENERGIA_MAXIMO		EQU	99
+ENERGIA_INICIAL		EQU 80
+ENERGIA_MAXIMO		EQU 99
 BONUS_ENERGIA		EQU 10		; valor do bonus de energia ao destruir um alien
-N_ALIENS			EQU 4		; numero de aliens
+N_ALIENS		EQU 4		; numero de aliens
 NAVE_X_INICIAL		EQU 20
-NAVE_Y_INICIAL		EQU	15
-ORIENTACAO_INICIAL	EQU	1
+NAVE_Y_INICIAL		EQU 15
+ORIENTACAO_INICIAL	EQU 1
 RAIO_INICIAL		EQU 0
 ENERGIA_TEMP		EQU 2
 TAMANHO_RAIO		EQU 5		; tamanho do raio, a contar do centro da nave
@@ -52,14 +52,14 @@ ALIEN_Y3_INICIAL    EQU 30
 ; *********************************************************************************
 PLACE		1000H					; localiza blocos de dados
 			
-pilha:		TABLE 200H				; espaço reservado para a pilha 
+pilha:		TABLE 200H				; espaï¿½o reservado para a pilha 
 
-SP_inicial:							; este é o endereço com que o SP deve ser inicializado. 
+SP_inicial:						; este ï¿½ o endereï¿½o com que o SP deve ser inicializado. 
 
 ; *********************************************************************************
 ; * Dados
 ; *********************************************************************************								
-table_pxscreen: 	WORD 10000000b	; 0 tabela de 8 máscaras (cada uma só com um bit a 1)
+table_pxscreen: 	WORD 10000000b	; 0 tabela de 8 mï¿½scaras (cada uma sï¿½ com um bit a 1)
 					WORD 01000000b	; 1	para desenhar no pixel screen
 					WORD 00100000b	; 2
 					WORD 00010000b	; 3
@@ -136,52 +136,52 @@ table_teclado:  	WORD andar 			; 0
 					WORD nada 			; E
 					WORD nada 			; F
 					
-alien_x_inicial:	WORD ALIEN_X0_INICIAL	; tabela com posições x iniciais dos aliens para repor mais facilmente 
+alien_x_inicial:	WORD ALIEN_X0_INICIAL	; tabela com posiï¿½ï¿½es x iniciais dos aliens para repor mais facilmente 
 					WORD ALIEN_X1_INICIAL
 					WORD ALIEN_X2_INICIAL
 					WORD ALIEN_X3_INICIAL
 										
-alien_y_inicial:	WORD ALIEN_Y0_INICIAL	; tabela com posições y iniciais dos aliens para repor mais facilmente 
+alien_y_inicial:	WORD ALIEN_Y0_INICIAL	; tabela com posiï¿½ï¿½es y iniciais dos aliens para repor mais facilmente 
 					WORD ALIEN_Y1_INICIAL
 					WORD ALIEN_Y2_INICIAL
 					WORD ALIEN_Y3_INICIAL	
 						
-alien_x:			WORD ALIEN_X0_INICIAL	;  tabela com posições x dos aliens
+alien_x:			WORD ALIEN_X0_INICIAL	;  tabela com posiï¿½ï¿½es x dos aliens
 					WORD ALIEN_X1_INICIAL
 					WORD ALIEN_X2_INICIAL
 					WORD ALIEN_X3_INICIAL
 					
-alien_y:			WORD ALIEN_Y0_INICIAL	;  tabela com posições y dos aliens
+alien_y:			WORD ALIEN_Y0_INICIAL	;  tabela com posiï¿½ï¿½es y dos aliens
 					WORD ALIEN_Y1_INICIAL
 					WORD ALIEN_Y2_INICIAL
 					WORD ALIEN_Y3_INICIAL
 
 					
 estado_jogo: 		WORD NORMAL
-redesenha:			WORD 1
+redesenha:		WORD 1
 redesenha_energia:	WORD 1
 				
 				
 tecla_flanco:		WORD 0					; 0 = flanco ascendente; 1 flanco descendente
-tecla_transicao:	WORD 0					; 0 = sem transição; 1 = com transiçao
-tecla_anterior:		WORD -1					; guarda a tecla pressionada entre iterações, para detectar transições
+tecla_transicao:	WORD 0					; 0 = sem transiï¿½ï¿½o; 1 = com transiï¿½ao
+tecla_anterior:		WORD -1					; guarda a tecla pressionada entre iteraï¿½ï¿½es, para detectar transiï¿½ï¿½es
 
-; Tabela de vectores de interrupção
+; Tabela de vectores de interrupï¿½ï¿½o
 tabela_interrupcoes:		WORD relogio_aliens
 							WORD relogio_energia						
 
 ; *********************************************************************************
-; * Código
+; * Cï¿½digo
 ; *********************************************************************************
-PLACE			0000H							; o código tem de começar em 0000H
-inicio:			MOV	SP, SP_inicial				; inicializa SP para a palavra a seguir à última da pilha
+PLACE			0000H							; o cï¿½digo tem de comeï¿½ar em 0000H
+inicio:			MOV	SP, SP_inicial				; inicializa SP para a palavra a seguir ï¿½ ï¿½ltima da pilha
 				MOV	BTE, tabela_interrupcoes	; incializa BTE
 
 			   	CALL desenha_tudo		
 
-				EI0								; permite interrupções tipo 0
-				EI1								; permite interrupções tipo 1
-				EI								; activa interrupçoes globais 
+				EI0								; permite interrupï¿½ï¿½es tipo 0
+				EI1								; permite interrupï¿½ï¿½es tipo 1
+				EI								; activa interrupï¿½oes globais 
 ciclo_inicio:	CALL teclado
 
 				CALL detecta_flancos			; detectar tecla pressionada ou largada
@@ -196,32 +196,32 @@ ciclo_inicio:	CALL teclado
 
 
 ; *********************************************************************************
-; * Rotinas de Interrupções
+; * Rotinas de Interrupï¿½ï¿½es
 ; *********************************************************************************
 
 ; *********************************************************************************
-; * Descrição:	Trata a interrupção do relógio da energia.
+; * Descriï¿½ï¿½o:	Trata a interrupï¿½ï¿½o do relï¿½gio da energia.
 ; *********************************************************************************
 relogio_energia:
 				PUSH R1
 				PUSH R2
 				PUSH R3
 				
-				MOV R3, estado_jogo				; nao detecta se já terminado
+				MOV R3, estado_jogo				; nao detecta se jï¿½ terminado
 				MOV R2, [R3] 
 				CMP R2, TERMINADO
 				JEQ f_rel_energia
 				
-				MOV R1, raio_on					; se raio desligado não faz nada
+				MOV R1, raio_on					; se raio desligado nï¿½o faz nada
 				MOV R2, [R1]
 				CMP R2,0
 				JEQ f_rel_energia
 				
-				MOV R1, energia					; lê energia
+				MOV R1, energia					; lï¿½ energia
 				MOV R2, [R1]
 				MOV R3, ENERGIA_TEMP
 				SUB R2, R3						; decrementa
-				MOV [R1], R2					; escreve na memória
+				MOV [R1], R2					; escreve na memï¿½ria
 
 				MOV R2, redesenha_energia		; activar flag, para redesenhar
 				MOV R1, 1
@@ -233,7 +233,7 @@ f_rel_energia:	POP R3
 				RFE
 
 ; *********************************************************************************
-; * Descrição:	Trata a interrupção do relógio dos aliens.
+; * Descriï¿½ï¿½o:	Trata a interrupï¿½ï¿½o do relï¿½gio dos aliens.
 ; *********************************************************************************
 relogio_aliens:
 				CALL mover_aliens
@@ -246,10 +246,10 @@ relogio_aliens:
 
 
 ; *********************************************************************************
-; * Descrição:	Detecta fim de jogo, por colisão ou falta de energia
+; * Descriï¿½ï¿½o:	Detecta fim de jogo, por colisï¿½o ou falta de energia
 ; * Entrada:		--
-; * Saída:	 		--
-; * Destrói:		--
+; * Saï¿½da:	 		--
+; * Destrï¿½i:		--
 ; *********************************************************************************
 
 detecta_game_over:
@@ -258,7 +258,7 @@ detecta_game_over:
 					PUSH R3
 					PUSH R9
 					
-					MOV R3, estado_jogo				; nao detecta se já terminado
+					MOV R3, estado_jogo				; nao detecta se jï¿½ terminado
 					MOV R2, [R3] 
 					CMP R2, TERMINADO
 					JEQ go_fim
@@ -295,32 +295,32 @@ go_fim:				POP R9
 					RET 
 
 ; *********************************************************************************
-; * Descrição:	Desenha aliens e nave
+; * Descriï¿½ï¿½o:	Desenha aliens e nave
 ; * Entrada:		--
-; * Saída:	 		--
-; * Destrói:		--
+; * Saï¿½da:	 		--
+; * Destrï¿½i:		--
 ; *********************************************************************************
 desenha_tudo:
 				PUSH R0
 				PUSH R1
 				PUSH R2
 				
-				MOV R2, redesenha_energia		; não mostra energia, se a flag estiver a 0. Para não piscar
+				MOV R2, redesenha_energia		; nï¿½o mostra energia, se a flag estiver a 0. Para nï¿½o piscar
 				MOV R1, [R2]
 				CMP R1, 0
 				JEQ dt_screen
 				CALL mostra_energia	
 				
-				MOV R1, 0						; já desenhou, limpa flag
+				MOV R1, 0						; jï¿½ desenhou, limpa flag
 				MOV [R2], R1
 				
 				
-dt_screen:		MOV R2, redesenha				; não desenha, se a flag estiver a 0. Para não piscar
+dt_screen:		MOV R2, redesenha				; nï¿½o desenha, se a flag estiver a 0. Para nï¿½o piscar
 				MOV R1, [R2]
 				CMP R1, 0
 				JEQ dt_fim
 				
-				MOV R0, estado_jogo				; não desenha, se terminado
+				MOV R0, estado_jogo				; nï¿½o desenha, se terminado
 				MOV R1, [R0]
 				CMP R1, TERMINADO
 				JEQ dt_terminado				; if terminado { enche_screen } else {desenha nave + aliens }
@@ -335,7 +335,7 @@ dt_screen:		MOV R2, redesenha				; não desenha, se a flag estiver a 0. Para não 
 dt_terminado:   CALL enche_screen
 				
 				
-dt_if_fim:    	MOV R1, 0						; já desenhou, limpa flag
+dt_if_fim:    	MOV R1, 0						; jï¿½ desenhou, limpa flag
 				MOV [R2], R1
 				
 dt_fim:			POP R2
@@ -345,15 +345,15 @@ dt_fim:			POP R2
 
 
 ; *********************************************************************************
-; * Descrição:	Altera/modifica no ecra o pixel nas coordenadas X e Y. 
+; * Descriï¿½ï¿½o:	Altera/modifica no ecra o pixel nas coordenadas X e Y. 
 ; * Entrada:	R1 (Coordenada X do ecra)
 ;         		R2 (Coordenada Y do ecra)
 ;             	R9 (Accao a fazer: apagar = 0 / acender = 1)
-; * Saída:			--
-; * Destrói:		--
+; * Saï¿½da:			--
+; * Destrï¿½i:		--
 ; *********************************************************************************
 ; * Notas:
-; *(0,0) do pixelscreen é o canto superior esquerdo.
+; *(0,0) do pixelscreen ï¿½ o canto superior esquerdo.
  
 modifica_pixel:
 				PUSH R3						; salvaguarda registos
@@ -363,7 +363,7 @@ modifica_pixel:
 				PUSH R7
 				PUSH R8
 				
-				; 1ª fase: descobrir qual o endereço do byte a ser lido do pixel screen
+				; 1ï¿½ fase: descobrir qual o endereï¿½o do byte a ser lido do pixel screen
 				
 				; 8000h + (y * 4 + x / 8) = endereco do byte de interesse, resultado em R3
 				MOV R3, R2					; primeira parte: y * 4, resultado em R3
@@ -376,25 +376,25 @@ modifica_pixel:
 				MOV R5, PX_SCREEN 			; somar offset do endereco do ecra
 				ADD R3, R5
 		
-				; 2ª fase: descobrir qual a posição do bit a ser modificado do pixel screen
-				MOV R6, R1					; x % 8 = posição do bit de interesse, resultado em R6
+				; 2ï¿½ fase: descobrir qual a posiï¿½ï¿½o do bit a ser modificado do pixel screen
+				MOV R6, R1					; x % 8 = posiï¿½ï¿½o do bit de interesse, resultado em R6
 				MOV R7, OITO	
 				MOD R6, R7
 		
-				; multiplicar por dois, devido à cena par/impar da RAM
+				; multiplicar por dois, devido ï¿½ cena par/impar da RAM
 				MOV R7, DOIS
 				MUL R6, R7
 		
 				MOV R7, table_pxscreen
 				ADD R7, R6
 				ADD R7, 1
-				MOVB R8, [R7]				; máscara
+				MOVB R8, [R7]				; mï¿½scara
 				
-				; 3ª fase: ler do endereço calculado o byte a ser modificado
+				; 3ï¿½ fase: ler do endereï¿½o calculado o byte a ser modificado
 				; ler o byte de interesse do ecra, resultado em R4
 				MOVB R4, [R3]
 				
-				; 4ª fase: modificar o bit de interesse
+				; 4ï¿½ fase: modificar o bit de interesse
 				
 				; if acende = true
 				CMP R9, 0
@@ -405,7 +405,7 @@ modifica_pixel:
 apaga:			NOT R8
 				AND R8, R4
 		
-				; 5ª fase: reescrever o byte modificado no endereco de interesse no ecra
+				; 5ï¿½ fase: reescrever o byte modificado no endereco de interesse no ecra
 fim_if:			MOVB [R3], R8
 			
 				POP R8						; restaura registos
@@ -417,10 +417,10 @@ fim_if:			MOVB [R3], R8
 				RET
 
 ; *********************************************************************************
-; * Descrição:	Move N aliens com base nas coordenadas da tabela.
+; * Descriï¿½ï¿½o:	Move N aliens com base nas coordenadas da tabela.
 ; * Entrada:		--
-; * Saída:	 		--
-; * Destrói:		--
+; * Saï¿½da:	 		--
+; * Destrï¿½i:		--
 ; *********************************************************************************
 
 mover_aliens: 		PUSH R1
@@ -464,10 +464,10 @@ terminou1:			MOV R2, redesenha			; activar flag, para redesenhar
 					RET
 
 ; *********************************************************************************
-; * Descrição:	Andar aliens
+; * Descriï¿½ï¿½o:	Andar aliens
 ; * Entrada:		R1 (x_alien), R2 (y_alien)
-; * Saída:	 		R1 (x_alien), R2 (y_alien)
-; * Destrói:		--
+; * Saï¿½da:	 		R1 (x_alien), R2 (y_alien)
+; * Destrï¿½i:		--
 ; *********************************************************************************
 
 andar_alien:	 
@@ -479,7 +479,7 @@ andar_alien:
 				; 	X	;
 				;;;;;;;;;
 				
-				MOV R6, nave_x		; endereço nave_x
+				MOV R6, nave_x		; endereï¿½o nave_x
 				MOV R4,[R6]			; nave_x
 				
 				CMP R4,R1			
@@ -493,7 +493,7 @@ aumenta_x: 		ADD R1,1         	; aumenta uma unidade ao x do alien
 				; 	Y	;
 				;;;;;;;;;
 
-fim_x:			MOV R6,nave_y    	; endereço nave_y
+fim_x:			MOV R6,nave_y    	; endereï¿½o nave_y
 				MOV R4,[R6]			; nave_y
 				
 				CMP R4,R2			
@@ -511,10 +511,10 @@ fim_y: 			POP R6
 				RET
 
 ; *********************************************************************************
-; * Descrição:	Desenha N aliens com base nas coordenadas da tabela.
+; * Descriï¿½ï¿½o:	Desenha N aliens com base nas coordenadas da tabela.
 ; * Entrada:		--
-; * Saída:	 		--
-; * Destrói:		--
+; * Saï¿½da:	 		--
+; * Destrï¿½i:		--
 ; *********************************************************************************
 
 desenha_aliens:		PUSH R1
@@ -553,11 +553,11 @@ terminou:			POP R7
 					RET
 
 ; *********************************************************************************
-; * Descrição:	Desenha um alien no ecra com base nas coordenadas X e Y, que é o seu centro.
+; * Descriï¿½ï¿½o:	Desenha um alien no ecra com base nas coordenadas X e Y, que ï¿½ o seu centro.
 ; * Entrada:		R1 (Coordenada X do centro do alien)
 ;					R2 (Coordenada Y do centro do alien)
-; * Saída:	 		--
-; * Destrói:		--
+; * Saï¿½da:	 		--
+; * Destrï¿½i:		--
 ; *********************************************************************************
 
 desenha_alien:
@@ -568,10 +568,10 @@ desenha_alien:
 					RET
 
 ; *********************************************************************************
-; * Descrição:	Desenha um nave no ecra com base nas coordenadas X e Y, que é o seu centro.
+; * Descriï¿½ï¿½o:	Desenha um nave no ecra com base nas coordenadas X e Y, que ï¿½ o seu centro.
 ; * Entrada:		--
-; * Saída:	 		--
-; * Destrói:		--
+; * Saï¿½da:	 		--
+; * Destrï¿½i:		--
 ; *********************************************************************************
 
 desenha_nave:
@@ -582,14 +582,14 @@ desenha_nave:
 				PUSH R10
 				
 				MOV R10, table_nave 			; tabela com os pixeis da nave
-				MOV R3, nave_x					; endereço x_nave
-				MOV R4, nave_y					; endereço y_nave
+				MOV R3, nave_x					; endereï¿½o x_nave
+				MOV R4, nave_y					; endereï¿½o y_nave
 				MOV R1, [R3]					; x_nave
 				MOV R2, [R4] 					; y_nave
 				
 				CALL desenha_objecto			; entra R1, R2 e R10
 				
-				MOV R3, raio_on					; desenha raio ou canhão conforme variavel raio_on
+				MOV R3, raio_on					; desenha raio ou canhï¿½o conforme variavel raio_on
 				MOV R4, [R3]
 				CMP R4, 0
 				JEQ canhao
@@ -606,12 +606,12 @@ fim_des_nave:	POP R10
 
 
 ; *********************************************************************************
-; * Descrição:	Desenha um objecto (nave/alien) no ecra com base nas coordenadas X e Y, que é o seu centro.
+; * Descriï¿½ï¿½o:	Desenha um objecto (nave/alien) no ecra com base nas coordenadas X e Y, que ï¿½ o seu centro.
 ; * Entrada:		R1 (Coordenada X do centro do objecto)
 ;					R2 (Coordenada Y do centro do objecto)
 ;					R10 (Tabelas da nave ou do alien)
-; * Saída:	 		--
-; * Destrói:		--
+; * Saï¿½da:	 		--
+; * Destrï¿½i:		--
 ; *********************************************************************************
 ; * Notas:
 ; * O objecto tem 3x3 pixeis
@@ -682,10 +682,10 @@ fim_nave:		MOV R1, R3						; restore de R1 (x_centro)
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Verifica ataque aos aliens.
+; * Descriï¿½ï¿½o:		Verifica ataque aos aliens.
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		-- 
+; * Saï¿½da:			--
+; * Destrï¿½i: 		-- 
 ; *********************************************************************************
 detecta_ataque:
 				PUSH R0
@@ -750,12 +750,12 @@ da_fim:			POP R11
 				RET 
 				
 ; *********************************************************************************
-; * Descrição:		Verifica se a ponta do raio colide com alien.
+; * Descriï¿½ï¿½o:		Verifica se a ponta do raio colide com alien.
 ; * Entrada:		R0 (offset das tabelas alien_x, alien_y, alien_x_inicial, alien_y_inicial
 ;					R3 (x_raio)
 ;					R4 (y_raio)
-; * Saída:			--
-; * Destrói: 		-- 
+; * Saï¿½da:			--
+; * Destrï¿½i: 		-- 
 ; *********************************************************************************
 detecta_ataque_alien:
 				PUSH R0
@@ -771,10 +771,10 @@ detecta_ataque_alien:
 				PUSH R10
 				PUSH R11
 
-				MOV R5, 1							; distância limite da colisão entre raio e aliens
+				MOV R5, 1							; distï¿½ncia limite da colisï¿½o entre raio e aliens
 				MOV R7, alien_x
 				MOV R8, alien_y
-				MOV R10, alien_x_inicial			; endereço da tabela de posições iniciais dos aliens
+				MOV R10, alien_x_inicial			; endereï¿½o da tabela de posiï¿½ï¿½es iniciais dos aliens
 				MOV R6, alien_y_inicial
 				
 				
@@ -786,10 +786,10 @@ detecta_ataque_alien:
 				JNE daa_fim
 		
 
-				MOV R1, [R10 + R0]					; conteudo da tabela de posições iniciais dos aliens
+				MOV R1, [R10 + R0]					; conteudo da tabela de posiï¿½ï¿½es iniciais dos aliens
 				MOV R2, [R6 + R0]
 				
-				MOV [R7 + R0], R1					; copiar para a tabela das posições dos aliens
+				MOV [R7 + R0], R1					; copiar para a tabela das posiï¿½ï¿½es dos aliens
 				MOV [R8 + R0], R2
 				
 				CALL add_bonus_energia				; incrementa o bonus de energia
@@ -809,10 +809,10 @@ daa_fim:		POP R11
 				RET
 				
 ; *********************************************************************************
-; * Descrição:		Incrementa a energia da NAVE, depois da morte de um alien
+; * Descriï¿½ï¿½o:		Incrementa a energia da NAVE, depois da morte de um alien
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 add_bonus_energia:
 				PUSH R1
@@ -825,7 +825,7 @@ add_bonus_energia:
 				MOV R3, BONUS_ENERGIA
 				ADD R1, R3
 				
-				MOV R4, ENERGIA_MAXIMO			; há um máximo de energia
+				MOV R4, ENERGIA_MAXIMO			; hï¿½ um mï¿½ximo de energia
 				CMP R1, R4
 				JLT abe_escreve
 				
@@ -845,15 +845,15 @@ abe_escreve:	MOV [R2], R1
 
 
 ; *********************************************************************************
-; * Descrição:		Verifica se existe colisao entre objectos.
+; * Descriï¿½ï¿½o:		Verifica se existe colisao entre objectos.
 ;					|x_1 - x_2 | <= d AND |y_1 - y_2| <= d
 ; * Entrada:		R1 (x do objecto 1)
 ;					R2 (y do objecto 1)
 ;					R3 (x do objecto 2)
 ;					R4 (y do objecto 2)
-;					R5 ( distancia limite da colisão )
-; * Saída:			R9 (Colisao = 1 / Sem colisao = 0)
-; * Destrói: 		R3, R4
+;					R5 ( distancia limite da colisï¿½o )
+; * Saï¿½da:			R9 (Colisao = 1 / Sem colisao = 0)
+; * Destrï¿½i: 		R3, R4
 ; *********************************************************************************
 detecta_colisao:
 
@@ -876,10 +876,10 @@ positivo_y:		CMP R4, R5
 dc_fim:			RET
 
 ; *********************************************************************************
-; * Descrição:		Verifica se existe colisao entre os aliens e a nave.
+; * Descriï¿½ï¿½o:		Verifica se existe colisao entre os aliens e a nave.
 ; * Entrada:		--
-; * Saída:			R9 (Colisao = 1 / Sem colisao = 0)
-; * Destrói: 		--
+; * Saï¿½da:			R9 (Colisao = 1 / Sem colisao = 0)
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 detecta_colisao_aliens:
 				PUSH R0
@@ -893,15 +893,15 @@ detecta_colisao_aliens:
 				PUSH R8
 				PUSH R10
 				
-				MOV R7, alien_x				; endereços das coordenadas dos alien
+				MOV R7, alien_x				; endereï¿½os das coordenadas dos alien
 				MOV R8, alien_y
 				
-				MOV R1, nave_x				; endereços das coordenadas da nave
+				MOV R1, nave_x				; endereï¿½os das coordenadas da nave
 				MOV R2, nave_y
 				MOV R1, [R1]				; x_nave
 				MOV R2, [R2]				; y_nave
 				
-				MOV R5, DOIS				; distância limite da colisão entre nave e aliens
+				MOV R5, DOIS				; distï¿½ncia limite da colisï¿½o entre nave e aliens
 				
 				MOV R10, 0 					; inicializa variavel do indice
 				MOV R0, N_ALIENS
@@ -934,10 +934,10 @@ dca_fim_loop:	POP R10
 				RET
 			
 ; *********************************************************************************
-; * Descrição:	Incrementa o indice da direccao do canhao, fazendo-o virar à direita.
+; * Descriï¿½ï¿½o:	Incrementa o indice da direccao do canhao, fazendo-o virar ï¿½ direita.
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 gira_direita: 	
 				PUSH R1
@@ -951,7 +951,7 @@ gira_direita:
 							
 				MOV R7, estado_jogo 			; verificar o estado do jogo
 				MOV R8, [R7]
-				CMP R8, NORMAL					; em caso afirmativo o canhão não gira
+				CMP R8, NORMAL					; em caso afirmativo o canhï¿½o nï¿½o gira
 				JNE fim
 				
 				MOV R3, canhao_index 			
@@ -962,28 +962,28 @@ gira_direita:
 				MOV R7, nave_y
 				MOV R7, [R7]					; y_nave
 				
-				; parede à esquerda
-				CMP R6, 1						; x_nave = 1, canhao_index = 4, não incrementar
+				; parede ï¿½ esquerda
+				CMP R6, 1						; x_nave = 1, canhao_index = 4, nï¿½o incrementar
 				JNE fim_parede_e
 				CMP R4, 4
 				JEQ fim
 				
-				; parede à direita
+				; parede ï¿½ direita
 fim_parede_e:	MOV R5, TAMANHO_PX
 				SUB R5, 2
-				CMP R6, R5						; x_nave = 31, canhao_index = 0, não incrementar		
+				CMP R6, R5						; x_nave = 31, canhao_index = 0, nï¿½o incrementar		
 				JNE fim_parede_d	
 				CMP R4, 0
 				JEQ fim		
 				
 				; parede em cima
-fim_parede_d:	CMP R7, 1						; y_nave = 1, canhao_index = 6, não incrementar		
+fim_parede_d:	CMP R7, 1						; y_nave = 1, canhao_index = 6, nï¿½o incrementar		
 				JNE fim_parede_c
 				CMP R4, 6
 				JEQ fim	
 
 				; parede em baixo
-fim_parede_c:	CMP R7, R5						; y_nave = 31, canhao_index = 2, não incrementar		
+fim_parede_c:	CMP R7, R5						; y_nave = 31, canhao_index = 2, nï¿½o incrementar		
 				JNE fim_parede_b
 				CMP R4, 2
 				JEQ fim	
@@ -1009,10 +1009,10 @@ fim:			MOV R2, redesenha			; activar flag, para redesenhar
 
 
 ; *********************************************************************************
-; * Descrição:	Decrementa o indice da direccao do canhão, fazendo-o virar à esquerda.
+; * Descriï¿½ï¿½o:	Decrementa o indice da direccao do canhï¿½o, fazendo-o virar ï¿½ esquerda.
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 gira_esquerda: 
@@ -1027,7 +1027,7 @@ gira_esquerda:
 				
 				MOV R7, estado_jogo 			; verificar o estado do jogo
 				MOV R8, [R7]
-				CMP R8, NORMAL					; em caso afirmativo o canhao não gira
+				CMP R8, NORMAL					; em caso afirmativo o canhao nï¿½o gira
 				JNE fim1
 							
 				
@@ -1039,28 +1039,28 @@ gira_esquerda:
 				MOV R7, nave_y
 				MOV R7, [R7]					; y_nave
 				
-				; parede à esquerda
-				CMP R6, 1						; x_nave = 1, canhao_index = 0, não incrementar
+				; parede ï¿½ esquerda
+				CMP R6, 1						; x_nave = 1, canhao_index = 0, nï¿½o incrementar
 				JNE fim_parede_e1
 				CMP R4, 0
 				JEQ fim1
 				
-				; parede à direita
+				; parede ï¿½ direita
 fim_parede_e1:	MOV R5, TAMANHO_PX
 				SUB R5, 2
-				CMP R6, R5						; x_nave = 31, canhao_index = 4, não incrementar		
+				CMP R6, R5						; x_nave = 31, canhao_index = 4, nï¿½o incrementar		
 				JNE fim_parede_d1	
 				CMP R4, 4
 				JEQ fim1		
 				
 				; parede em cima
-fim_parede_d1:	CMP R7, 1						; y_nave = 1, canhao_index = 2, não incrementar		
+fim_parede_d1:	CMP R7, 1						; y_nave = 1, canhao_index = 2, nï¿½o incrementar		
 				JNE fim_parede_c1
 				CMP R4, 2
 				JEQ fim1	
 
 				; parede em baixo
-fim_parede_c1:	CMP R7, R5						; y_nave = 31, canhao_index = 6, não incrementar		
+fim_parede_c1:	CMP R7, R5						; y_nave = 31, canhao_index = 6, nï¿½o incrementar		
 				JNE fim_parede_b1
 				CMP R4, 6
 				JEQ fim1
@@ -1088,14 +1088,14 @@ fim1:			MOV R2, redesenha				; activar flag, para redesenhar
 
 
 ; *********************************************************************************
-; * Descrição:	Calcula as coordenadas a uma determinada distância, segundo a orientação do canhão.
-; * Entrada:		R1 (posiçao x do centro da nave)
+; * Descriï¿½ï¿½o:	Calcula as coordenadas a uma determinada distï¿½ncia, segundo a orientaï¿½ï¿½o do canhï¿½o.
+; * Entrada:		R1 (posiï¿½ao x do centro da nave)
 ;					R2 (posicao y do centro da nave)
 ;					R10 (distancia do raio)
 ;
-; * Saída:			R3 (posição x do raio)
-;					R4 (posição y do raio)
-; * Destrói: 		--
+; * Saï¿½da:			R3 (posiï¿½ï¿½o x do raio)
+;					R4 (posiï¿½ï¿½o y do raio)
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 coordenadas_raio:
 				PUSH R5
@@ -1126,11 +1126,11 @@ coordenadas_raio:
 				
 
 ; *********************************************************************************
-; * Descrição:	Função que desenha o canhão da nave.
-; * Entrada:	R1 ( posiçao x do centro da nave )
+; * Descriï¿½ï¿½o:	Funï¿½ï¿½o que desenha o canhï¿½o da nave.
+; * Entrada:	R1 ( posiï¿½ao x do centro da nave )
 ;				R2 ( posicao y do centro da nave )
-; * Saída:		--
-; * Destrói: 	--
+; * Saï¿½da:		--
+; * Destrï¿½i: 	--
 ; *********************************************************************************
 
 desenha_canhao: 
@@ -1157,11 +1157,11 @@ desenha_canhao:
 				RET
 
 ; *********************************************************************************
-; * Descrição:	Função que desenha o raio da nave.
-; * Entrada:	R1 ( posiçao x do centro da nave )
+; * Descriï¿½ï¿½o:	Funï¿½ï¿½o que desenha o raio da nave.
+; * Entrada:	R1 ( posiï¿½ao x do centro da nave )
 ;				R2 ( posicao y do centro da nave )
-; * Saída:		--
-; * Destrói: 	--
+; * Saï¿½da:		--
+; * Destrï¿½i: 	--
 ; *********************************************************************************
 
 desenha_raio: 
@@ -1187,7 +1187,7 @@ dr_loop:		CMP R10, TAMANHO_RAIO
 				MOV R2, R4
 				MOV R9, 1						; 1 para acender o pixel
 				
-				; não deixa desejar para além das paredes do ecra
+				; nï¿½o deixa desejar para alï¿½m das paredes do ecra
 				MOV R7, TAMANHO_PX				; parede da direita
 				CMP R1, R7
 				JGE dr_fim
@@ -1206,7 +1206,7 @@ dr_loop:		CMP R10, TAMANHO_RAIO
 				MOV R1, R5						; repor x_nave em R1
 				MOV R2, R6
 				
-				ADD R10, 1						; próximo pixel do raio
+				ADD R10, 1						; prï¿½ximo pixel do raio
 				JMP dr_loop
 				
 dr_fim:			POP R10
@@ -1220,10 +1220,10 @@ dr_fim:			POP R10
 
 
 ; *********************************************************************************
-; * Descrição:		Função que altera a posição da nave.
+; * Descriï¿½ï¿½o:		Funï¿½ï¿½o que altera a posiï¿½ï¿½o da nave.
 ; * Entrada:		R10 (Tecla premida)
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 andar: 
@@ -1242,7 +1242,7 @@ andar:
 				
 				MOV R7, estado_jogo 			; verificar o estado do jogo
 				MOV R8, [R7]
-				CMP R8, NORMAL					; em caso afirmativo não anda
+				CMP R8, NORMAL					; em caso afirmativo nï¿½o anda
 				JNE fim_andar_y
 
 				MOV R7, teclado_direccao
@@ -1360,10 +1360,10 @@ fim_andar_y:	MOV R7, energia
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Função que activa/desactiva o raio.
+; * Descriï¿½ï¿½o:		Funï¿½ï¿½o que activa/desactiva o raio.
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 disparar: 		
@@ -1375,7 +1375,7 @@ disparar:
 				
 				MOV R7, estado_jogo 	; verificar o estado do jogo
 				MOV R6, [R7]
-				CMP R6, NORMAL			; em caso afirmativo não dispara
+				CMP R6, NORMAL			; em caso afirmativo nï¿½o dispara
 				JNE dispa_fim
 
 				MOV R0, raio_on
@@ -1414,10 +1414,10 @@ dispa_fim:		POP R6
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Interrompe o jogo até ser chamada novamente ou o jogo recomeçado.
+; * Descriï¿½ï¿½o:		Interrompe o jogo atï¿½ ser chamada novamente ou o jogo recomeï¿½ado.
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 pausa: 
@@ -1433,13 +1433,13 @@ pausa:
 				CMP R1, NORMAL
 				JNE p_normal			
 				
-				DI						; parar interrupções global	
+				DI						; parar interrupï¿½ï¿½es global	
 				MOV R1, PAUSADO			; jogo normal, pausar
 	
 		  		JMP p_fim
 		  		
 p_normal: 		MOV R1, NORMAL			; jogo pausado, 
-				EI						; recomeçar interrupções
+				EI						; recomeï¿½ar interrupï¿½ï¿½es
 p_fim:			MOV [R0], R1
 	
 				POP R1
@@ -1447,10 +1447,10 @@ p_fim:			MOV [R0], R1
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Função vazia para preencher na tabela de acções do teclado. 
+; * Descriï¿½ï¿½o:		Funï¿½ï¿½o vazia para preencher na tabela de acï¿½ï¿½es do teclado. 
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 nada: 		
@@ -1458,19 +1458,19 @@ nada:
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Pára o jogo independentemente do estado actual.
+; * Descriï¿½ï¿½o:		Pï¿½ra o jogo independentemente do estado actual.
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 sair: 
 				PUSH R0
 				PUSH R1
 	
-				DI						; parar interrupções
-				MOV R0, estado_jogo		; endereço do estado_jogo
+				DI						; parar interrupï¿½ï¿½es
+				MOV R0, estado_jogo		; endereï¿½o do estado_jogo
 			 	MOV R1, TERMINADO		; jogo pausado
-				MOV [R0], R1			; escreve o estado em memória
+				MOV [R0], R1			; escreve o estado em memï¿½ria
 				
 				CALL enche_screen		; mostra visualmente que o jogo acabou
 				
@@ -1484,10 +1484,10 @@ sair:
 
 
 ; *********************************************************************************
-; * Descrição:		Recomeça o jogo, independentemente do estado actual.
+; * Descriï¿½ï¿½o:		Recomeï¿½a o jogo, independentemente do estado actual.
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 reset:
 				PUSH R0
@@ -1498,10 +1498,10 @@ reset:
 				PUSH R5
 				PUSH R6
 				
-				DI							; suspender interrupções, enquanto repomos o estado inicial
+				DI							; suspender interrupï¿½ï¿½es, enquanto repomos o estado inicial
 				
-				MOV R0, estado_jogo			; endereço do estado_jogo
-			 	MOV R1, NORMAL				; recomeçar o estado
+				MOV R0, estado_jogo			; endereï¿½o do estado_jogo
+			 	MOV R1, NORMAL				; recomeï¿½ar o estado
 				MOV [R0], R1				; escreve o estado em memoria
 	
 				MOV R0, energia				; repor energia inicial
@@ -1516,7 +1516,7 @@ reset:
 				MOV R1, NAVE_Y_INICIAL
 				MOV [R0], R1
 				
-				MOV R0, canhao_index		; repor orientação da nave
+				MOV R0, canhao_index		; repor orientaï¿½ï¿½o da nave
 				MOV R1, ORIENTACAO_INICIAL
 				MOV [R0], R1
 	
@@ -1524,7 +1524,7 @@ reset:
 				MOV R1, RAIO_INICIAL
 				MOV [R0], R1
 				
-				; repor posições dos aliens
+				; repor posiï¿½ï¿½es dos aliens
 				MOV R3, alien_x_inicial		
 				MOV R0, alien_x
 				MOV R5, alien_y_inicial		
@@ -1552,7 +1552,7 @@ r_fim_loop:		MOV R0, redesenha			; activar flag, para redesenhar
 				MOV R1, 1
 				MOV [R0], R1
 				
-				EI							; recomeçar interrupções
+				EI							; recomeï¿½ar interrupï¿½ï¿½es
 				
 				POP R6
 				POP R5
@@ -1564,17 +1564,17 @@ r_fim_loop:		MOV R0, redesenha			; activar flag, para redesenhar
 				RET
 
 ; *********************************************************************************
-; * Descrição:	Função que limpa completamente o Pixel Screen.
+; * Descriï¿½ï¿½o:	Funï¿½ï¿½o que limpa completamente o Pixel Screen.
 ; * Entrada:	--
-; * Saída:		--
-; * Destrói: 	--
+; * Saï¿½da:		--
+; * Destrï¿½i: 	--
 ; *********************************************************************************
 limpa_screen:
 				PUSH 	R1					; salvaguarda registos
 				PUSH 	R2
 				PUSH 	R3
 		
-				MOV		R1, PX_SCREEN			; mete o endereço do pixel screen em R1
+				MOV		R1, PX_SCREEN			; mete o endereï¿½o do pixel screen em R1
 				MOV		R3, LIMITE_128		; define o limite de bytes do pixel screen
 				ADD 	R3, R1				
 				MOV		R2, 0				; pixeis todos a 0		
@@ -1584,7 +1584,7 @@ ciclo_screen:	CMP		R1, R3					; testa se chegou ao fim da matriz
 
 				MOVB	[R1], R2					; preenche os primeiros 8 bits com o valor
 				ADD		R1, 1				; passa para os proximos 8 bits
-				JMP 	ciclo_screen				; repete o ciclo até ter limpo todo o pixel screen
+				JMP 	ciclo_screen				; repete o ciclo atï¿½ ter limpo todo o pixel screen
 
 fim_screen:		POP 	R3						; restaura registos 
 				POP 	R2
@@ -1593,10 +1593,10 @@ fim_screen:		POP 	R3						; restaura registos
 				
 
 ; *********************************************************************************
-; * Descrição:	Função que preenche completamente o Pixel Screen.
+; * Descriï¿½ï¿½o:	Funï¿½ï¿½o que preenche completamente o Pixel Screen.
 ; * Entrada:	--
-; * Saída:		--
-; * Destrói: 	--
+; * Saï¿½da:		--
+; * Destrï¿½i: 	--
 ; *********************************************************************************
 
 enche_screen:
@@ -1604,7 +1604,7 @@ enche_screen:
 				PUSH 	R2
 				PUSH 	R3
 		
-				MOV		R1, PX_SCREEN			; mete o endereço do pixel screen em R1
+				MOV		R1, PX_SCREEN			; mete o endereï¿½o do pixel screen em R1
 				MOV		R3, LIMITE_128		; define o limite de bytes do pixel screen
 				ADD 	R3, R1				
 				MOV		R2, 0FFh				; pixeis todos a 1
@@ -1614,7 +1614,7 @@ ciclo_preenche:	CMP		R1, R3				; testa se chegou ao fim
 
 				MOVB	[R1], R2				; preenche os primeiros 8 bits com o valor
 				ADD		R1, 1			; passa para os proximos 8 bits
-				JMP 	ciclo_preenche		; repete o ciclo até ter limpo toda a matriz
+				JMP 	ciclo_preenche		; repete o ciclo atï¿½ ter limpo toda a matriz
 
 fim_preenche:	POP 	R3						; restaura registos 
 				POP 	R2
@@ -1623,10 +1623,10 @@ fim_preenche:	POP 	R3						; restaura registos
 
 
 ; *********************************************************************************
-; * Descrição:		Funçao que faz a descodificação da tecla que foi premida.
+; * Descriï¿½ï¿½o:		Funï¿½ao que faz a descodificaï¿½ï¿½o da tecla que foi premida.
 ; * Entrada:		--
-; * Saída:			R10 (Tecla premida)
-; * Destrói: 		--
+; * Saï¿½da:			R10 (Tecla premida)
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 teclado:	
@@ -1639,30 +1639,30 @@ teclado:
 				PUSH R7
 				PUSH R8
 				
-				MOV	R2, TECLADO_OUT		; R2 com o endereço do periférico
+				MOV	R2, TECLADO_OUT		; R2 com o endereï¿½o do perifï¿½rico
 				MOV R7, TECLADO_IN		
-				MOV R5,2				; é usado as potencias de dois para relacionar a linha com as entradas e saidas do teclado
+				MOV R5,2				; ï¿½ usado as potencias de dois para relacionar a linha com as entradas e saidas do teclado
 				
-				MOV R6, 000FH			; máscara para isolar o bit de menor peso
+				MOV R6, 000FH			; mï¿½scara para isolar o bit de menor peso
 				
 				MOV R8, 0				; R8 vai indicar qual a linha em teste
-				MOV	R1, 1				; R1 vai ter o input correspondente à linha em teste. Inicia com linha 0 (0001b)	
-				MOV R4, 4				; Limite para recomeçar o ciclo
+				MOV	R1, 1				; R1 vai ter o input correspondente ï¿½ linha em teste. Inicia com linha 0 (0001b)	
+				MOV R4, 4				; Limite para recomeï¿½ar o ciclo
 				
-ciclo_scan:		MOVB [R2], R1			; escrever no porto de saída (teclado)
+ciclo_scan:		MOVB [R2], R1			; escrever no porto de saï¿½da (teclado)
 				MOVB R3, [R7]			; ler do porto de entrada (teclado)
-				AND R3, R6				; afectar as flags (MOVs não afectam as flags)
+				AND R3, R6				; afectar as flags (MOVs nï¿½o afectam as flags)
 				JNZ fim_scan			; R3 != 0,  tecla premida
 				MUL R1, R5				; proxima linha 
 				ADD R8, 1
 				CMP R8, R4
 				JLE ciclo_scan				
-				MOV R10, -1				; se a linha >= 4, não foi detectada nenhuma tecla. Retorna-se com R10 = -1
+				MOV R10, -1				; se a linha >= 4, nï¿½o foi detectada nenhuma tecla. Retorna-se com R10 = -1
 				JMP teclado_fim
 			
 fim_scan:		MOV R4, 0				; inicializa o contador
 				
-ciclo_tecla: 	CMP R3, 1				; verifica se é igual a 1
+ciclo_tecla: 	CMP R3, 1				; verifica se ï¿½ igual a 1
 				JZ fim_coluna				
 				DIV R3, R5				; divide sempre por 2
 				ADD R4, 1				; incrementa o contador
@@ -1684,10 +1684,10 @@ teclado_fim:	POP R8
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Detectar flanco ascendente e descendente da tecla.
+; * Descriï¿½ï¿½o:		Detectar flanco ascendente e descendente da tecla.
 ; * Entrada:		R10 (Tecla premida)
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 detecta_flancos:
@@ -1701,16 +1701,16 @@ detecta_flancos:
 				MOV R4, tecla_flanco
 
 				MOV R3, 0
-				MOV [R1], R3					; limpar transição
+				MOV [R1], R3					; limpar transiï¿½ï¿½o
 			
 				MOV R3, [R2]
 				CMP R10, R3					; comparar com tecla anterior
 				JEQ dflancos_fim
 				
 				MOV R3, 1
-				MOV [R1], R3					; houve transição
+				MOV [R1], R3					; houve transiï¿½ï¿½o
 				
-				CMP R10, -1					; tecla (R10) == -1, é flanco descendente
+				CMP R10, -1					; tecla (R10) == -1, ï¿½ flanco descendente
 				JEQ dflancos_desc
 	
 				MOV R3, 0						; flanco ascendente = 0
@@ -1729,10 +1729,10 @@ dflancos_fim:	POP R4
 				
 				
 ; *********************************************************************************
-; * Descrição:		Determina qual a acção a realizar e executa-a.
+; * Descriï¿½ï¿½o:		Determina qual a acï¿½ï¿½o a realizar e executa-a.
 ; * Entrada:		R10 (tecla premida)
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************	
 invoca_accao:
 				PUSH R0
@@ -1744,21 +1744,21 @@ invoca_accao:
 				PUSH R6
 				PUSH R7
 				
-				MOV R0, table_teclado				; tabela com endereços das rotinas a chamar
+				MOV R0, table_teclado				; tabela com endereï¿½os das rotinas a chamar
 				MOV R1, tecla_transicao
-				MOV R2, disparar					; endereço da rotina dispara
+				MOV R2, disparar					; endereï¿½o da rotina dispara
 				MOV R3, tecla_flanco
-				MOV R6, tecla_anterior				; tecla guardada da iteração anterior
+				MOV R6, tecla_anterior				; tecla guardada da iteraï¿½ï¿½o anterior
 
 				MOV R7, R10
 				MOV R10, [R6]
-				MOV [R6], R7						; guarda a tecla premida nesta iteração para a próxima
+				MOV [R6], R7						; guarda a tecla premida nesta iteraï¿½ï¿½o para a prï¿½xima
 
-				MOV R1, [R1]						; R1 = 1 se houve transiçao entre tecla pressionada e não pressionada
-				CMP R1, 0							; testar se alguma transiçao foi detectada
+				MOV R1, [R1]						; R1 = 1 se houve transiï¿½ao entre tecla pressionada e nï¿½o pressionada
+				CMP R1, 0							; testar se alguma transiï¿½ao foi detectada
 				JEQ ia_fim 
 				
-				CMP R7, 5							; 5 é a tecla de dispara
+				CMP R7, 5							; 5 ï¿½ a tecla de dispara
 				JNE ia_else
 				
 				CALL disparar
@@ -1786,10 +1786,10 @@ ia_fim:			MOV R10, R7						; repor tecla premida
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Mostra energia nos displays.
+; * Descriï¿½ï¿½o:		Mostra energia nos displays.
 ; * Entrada:		--
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 mostra_energia:
@@ -1805,10 +1805,10 @@ mostra_energia:
 				RET
 				
 ; *********************************************************************************
-; * Descrição:		Mostra em formato decimal nos dois displays.
+; * Descriï¿½ï¿½o:		Mostra em formato decimal nos dois displays.
 ; * Entrada:		R10 (valor em hexadecimal)
-; * Saída:			--
-; * Destrói: 		--
+; * Saï¿½da:			--
+; * Destrï¿½i: 		--
 ; *********************************************************************************
 
 display:
@@ -1819,7 +1819,7 @@ display:
 			    
 			    MOV R3, R10				; coloca valor hexadecimal a mostrar num registo para as unidades
 			    MOV R4, R10				; coloca valor hexadecimal a mostrar num registo para as dezenas
-				MOV R2, DEZ				; guarda constante 10, útil para fazer a divisao inteira e descobrir o resto da divisao inteira
+				MOV R2, DEZ				; guarda constante 10, ï¿½til para fazer a divisao inteira e descobrir o resto da divisao inteira
 				
 				DIV R4, R2				; guarda o valor das dezenas (R4)
 			    MOD R3, R2				; guarda o valor das unidades (R3)
@@ -1827,7 +1827,7 @@ display:
 			    SHL R4, 4				; empurra nibble das dezenas para o nibble de maior peso
 			    OR  R4, R3				; junta o nibble das dezenas com os das unidades
 			    MOV R5, DISPLAY
-			    MOVB [R5], R4 			; escreve no porto de saída (POUT-1)
+			    MOVB [R5], R4 			; escreve no porto de saï¿½da (POUT-1)
 			   
 			   	POP R5					; restaurar registos
 				POP R4
