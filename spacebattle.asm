@@ -248,7 +248,7 @@ relogio_aliens:
 ; *********************************************************************************
 ; * Descriï¿½ï¿½o:	Detecta fim de jogo, por colisï¿½o ou falta de energia
 ; * Entrada:		--
-; * Saï¿½da:	 		--
+; * Saï¿½da:	 	--
 ; * Destrï¿½i:		--
 ; *********************************************************************************
 
@@ -297,7 +297,7 @@ go_fim:					POP R9
 ; *********************************************************************************
 ; * Descriï¿½ï¿½o:	Desenha aliens e nave
 ; * Entrada:		--
-; * Saï¿½da:	 		--
+; * Saï¿½da:	 	--
 ; * Destrï¿½i:		--
 ; *********************************************************************************
 desenha_tudo:
@@ -332,7 +332,7 @@ dt_screen:			MOV R2, redesenha				; nao desenha, se a flag estiver a 0. Para nï¿
 	
 				JMP dt_if_fim
 				
-dt_terminado:   CALL enche_screen
+dt_terminado:   		CALL enche_screen
 				
 				
 dt_if_fim:    			MOV R1, 0					; ja' desenhou, limpa flag
@@ -451,7 +451,7 @@ percorre_aliens1:			CMP R5, R6
 					ADD R5, 2				; par/impar	
 					JMP percorre_aliens1
 
-terminou1:			MOV R2, redesenha				; activar flag, para redesenhar
+terminou1:				MOV R2, redesenha			; activar flag, para redesenhar
 					MOV R1, 1
 					MOV [R2], R1
 
@@ -1467,7 +1467,7 @@ sair:
 				PUSH R0
 				PUSH R1
 	
-				DI						; parar interrupï¿½ï¿½es
+				DI				; parar interrupï¿½ï¿½es
 				MOV R0, estado_jogo		; endereï¿½o do estado_jogo
 			 	MOV R1, TERMINADO		; jogo pausado
 				MOV [R0], R1			; escreve o estado em memï¿½ria
@@ -1516,7 +1516,7 @@ reset:
 				MOV R1, NAVE_Y_INICIAL
 				MOV [R0], R1
 				
-				MOV R0, canhao_index		; repor orientaï¿½ï¿½o da nave
+				MOV R0, canhao_index			; repor orientaï¿½ï¿½o da nave
 				MOV R1, ORIENTACAO_INICIAL
 				MOV [R0], R1
 	
@@ -1532,7 +1532,7 @@ reset:
 				
 				MOV R1, 0
 				MOV R2, N_ALIENS
-				SHL R2, 1					; R2 * 2; par/impar
+				SHL R2, 1				; R2 * 2; par/impar
 r_loop:				CMP R1, R2
 				JGE r_fim_loop
 				
@@ -1548,11 +1548,11 @@ r_fim_loop:			MOV R0, redesenha			; activar flag, para redesenhar
 				MOV R1, 1
 				MOV [R0], R1
 				
-				MOV R0, redesenha_energia	; activar flag, para redesenhar energia nos displays
+				MOV R0, redesenha_energia		; activar flag, para redesenhar energia nos displays
 				MOV R1, 1
 				MOV [R0], R1
 				
-				EI							; recomeï¿½ar interrupï¿½ï¿½es
+				EI					; recomeï¿½ar interrupï¿½ï¿½es
 				
 				POP R6
 				POP R5
@@ -1570,53 +1570,53 @@ r_fim_loop:			MOV R0, redesenha			; activar flag, para redesenhar
 ; * Destrï¿½i: 	--
 ; *********************************************************************************
 limpa_screen:
-				PUSH 	R1				; salvaguarda registos
-				PUSH 	R2
-				PUSH 	R3
+				PUSH R1				; salvaguarda registos
+				PUSH R2
+				PUSH R3
 		
-				MOV	R1, PX_SCREEN			; mete o endereï¿½o do pixel screen em R1
-				MOV	R3, LIMITE_128			; define o limite de bytes do pixel screen
-				ADD 	R3, R1				
-				MOV	R2, 0				; pixeis todos a 0		
+				MOV R1, PX_SCREEN			; mete o endereï¿½o do pixel screen em R1
+				MOV R3, LIMITE_128			; define o limite de bytes do pixel screen
+				ADD R3, R1				
+				MOV R2, 0				; pixeis todos a 0		
 
-ciclo_screen:			CMP	R1, R3				; testa se chegou ao fim da matriz
-				JZ	fim_screen			; salta para fim_matriz caso tenha chegado
+ciclo_screen:			CMP R1, R3				; testa se chegou ao fim da matriz
+				JZ fim_screen				; salta para fim_matriz caso tenha chegado
 
-				MOVB	[R1], R2			; preenche os primeiros 8 bits com o valor
-				ADD	R1, 1				; passa para os proximos 8 bits
-				JMP 	ciclo_screen			; repete o ciclo atï¿½ ter limpo todo o pixel screen
+				MOVB [R1], R2				; preenche os primeiros 8 bits com o valor
+				ADD R1, 1				; passa para os proximos 8 bits
+				JMP ciclo_screen			; repete o ciclo atï¿½ ter limpo todo o pixel screen
 
-fim_screen:			POP 	R3				; restaura registos 
-				POP 	R2
-				POP 	R1
+fim_screen:			POP R3					; restaura registos 
+				POP R2
+				POP R1
 				RET
 				
 
 ; *********************************************************************************
 ; * Descriï¿½ï¿½o:	Funï¿½ï¿½o que preenche completamente o Pixel Screen.
 ; * Entrada:	--
-; * Saï¿½da:		--
+; * Saï¿½da:	--
 ; * Destrï¿½i: 	--
 ; *********************************************************************************
 
 enche_screen:
-				PUSH 	R1					; salvaguarda registos
-				PUSH 	R2
-				PUSH 	R3
+				PUSH R1				; salvaguarda registos
+				PUSH R2
+				PUSH R3
 		
-				MOV		R1, PX_SCREEN			; mete o endereï¿½o do pixel screen em R1
-				MOV		R3, LIMITE_128		; define o limite de bytes do pixel screen
-				ADD 	R3, R1				
-				MOV		R2, 0FFh				; pixeis todos a 1
+				MOV R1, PX_SCREEN		; mete o endereï¿½o do pixel screen em R1
+				MOV R3, LIMITE_128		; define o limite de bytes do pixel screen
+				ADD R3, R1			
+				MOV R2, 0FFh			; pixeis todos a 1
 
-ciclo_preenche:			CMP		R1, R3				; testa se chegou ao fim
-				JZ		fim_preenche		
+ciclo_preenche:			CMP R1, R3			; testa se chegou ao fim
+				JZ fim_preenche		
 
-				MOVB	[R1], R2				; preenche os primeiros 8 bits com o valor
-				ADD		R1, 1			; passa para os proximos 8 bits
-				JMP 	ciclo_preenche		; repete o ciclo atï¿½ ter limpo toda a matriz
+				MOVB [R1], R2			; preenche os primeiros 8 bits com o valor
+				ADD R1, 1			; passa para os proximos 8 bits
+				JMP ciclo_preenche		; repete o ciclo atï¿½ ter limpo toda a matriz
 
-fim_preenche:			POP 	R3						; restaura registos 
+fim_preenche:			POP 	R3			; restaura registos 
 				POP 	R2
 				POP 	R1
 				RET
