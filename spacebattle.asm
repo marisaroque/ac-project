@@ -1362,7 +1362,7 @@ fim_andar_y:	MOV R7, energia
 ; *********************************************************************************
 ; * Descri��o:		Fun��o que activa/desactiva o raio.
 ; * Entrada:		--
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 
@@ -1373,7 +1373,7 @@ disparar:
 				PUSH R7
 				PUSH R6
 				
-				MOV R7, estado_jogo 	; verificar o estado do jogo
+				MOV R7, estado_jogo 		; verificar o estado do jogo
 				MOV R6, [R7]
 				CMP R6, NORMAL			; em caso afirmativo n�o dispara
 				JNE dispa_fim
@@ -1385,28 +1385,28 @@ disparar:
 				CMP R1, 0				
 				JEQ dispara
 				
-				MOV R1, 0				; se raio ligado, desliga	
+				MOV R1, 0			; se raio ligado, desliga	
 				JMP fim_disparar
 	
 
-dispara:		MOV R1, 1				; se raio desligado, liga
+dispara:			MOV R1, 1			; se raio desligado, liga
 				MOV R7, energia			; decrementar 2 unidades de energia
 				MOV R6, [R7]
 				SUB R6, 2
 				MOV [R7], R6	
 
 		
-fim_disparar:	MOV [R0], R1			; escrever estado do raio
+fim_disparar:			MOV [R0], R1			; escrever estado do raio
 
 				MOV R2, redesenha		; activar flag, para redesenhar
 				MOV R1, 1
 				MOV [R2], R1
 				
-				MOV R2, redesenha_energia		; activar flag, para redesenhar
+				MOV R2, redesenha_energia	; activar flag, para redesenhar
 				MOV R1, 1
 				MOV [R2], R1
 				
-dispa_fim:		POP R6
+dispa_fim:			POP R6
 				POP R7
 				POP R2
 				POP R1
@@ -1428,19 +1428,19 @@ pausa:
 				MOV R1, [R0]
 				
 				CMP R1, TERMINADO
-				JEQ p_fim				; estado terminado, sair
+				JEQ p_fim			; estado terminado, sair
 				
 				CMP R1, NORMAL
 				JNE p_normal			
 				
-				DI						; parar interrup��es global	
+				DI				; parar interrup��es global	
 				MOV R1, PAUSADO			; jogo normal, pausar
 	
 		  		JMP p_fim
 		  		
-p_normal: 		MOV R1, NORMAL			; jogo pausado, 
-				EI						; recome�ar interrup��es
-p_fim:			MOV [R0], R1
+p_normal: 			MOV R1, NORMAL			; jogo pausado, 
+				EI				; recome�ar interrup��es
+p_fim:				MOV [R0], R1
 	
 				POP R1
 				POP R0
@@ -1449,7 +1449,7 @@ p_fim:			MOV [R0], R1
 ; *********************************************************************************
 ; * Descri��o:		Fun��o vazia para preencher na tabela de ac��es do teclado. 
 ; * Entrada:		--
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 
@@ -1460,7 +1460,7 @@ nada:
 ; *********************************************************************************
 ; * Descri��o:		P�ra o jogo independentemente do estado actual.
 ; * Entrada:		--
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 sair: 
@@ -1486,7 +1486,7 @@ sair:
 ; *********************************************************************************
 ; * Descri��o:		Recome�a o jogo, independentemente do estado actual.
 ; * Entrada:		--
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 reset:
@@ -1498,7 +1498,7 @@ reset:
 				PUSH R5
 				PUSH R6
 				
-				DI							; suspender interrup��es, enquanto repomos o estado inicial
+				DI					; suspender interrup��es, enquanto repomos o estado inicial
 				
 				MOV R0, estado_jogo			; endere�o do estado_jogo
 			 	MOV R1, NORMAL				; recome�ar o estado
@@ -1533,7 +1533,7 @@ reset:
 				MOV R1, 0
 				MOV R2, N_ALIENS
 				SHL R2, 1					; R2 * 2; par/impar
-r_loop:			CMP R1, R2
+r_loop:				CMP R1, R2
 				JGE r_fim_loop
 				
 				MOV R4, [R3+R1]				; copia da tabela de valores iniciais de x
@@ -1544,7 +1544,7 @@ r_loop:			CMP R1, R2
 				ADD R1, 2
 				JMP r_loop
 				
-r_fim_loop:		MOV R0, redesenha			; activar flag, para redesenhar
+r_fim_loop:			MOV R0, redesenha			; activar flag, para redesenhar
 				MOV R1, 1
 				MOV [R0], R1
 				
@@ -1566,27 +1566,27 @@ r_fim_loop:		MOV R0, redesenha			; activar flag, para redesenhar
 ; *********************************************************************************
 ; * Descri��o:	Fun��o que limpa completamente o Pixel Screen.
 ; * Entrada:	--
-; * Sa�da:		--
+; * Sa�da:	--
 ; * Destr�i: 	--
 ; *********************************************************************************
 limpa_screen:
-				PUSH 	R1					; salvaguarda registos
+				PUSH 	R1				; salvaguarda registos
 				PUSH 	R2
 				PUSH 	R3
 		
-				MOV		R1, PX_SCREEN			; mete o endere�o do pixel screen em R1
-				MOV		R3, LIMITE_128		; define o limite de bytes do pixel screen
+				MOV	R1, PX_SCREEN			; mete o endere�o do pixel screen em R1
+				MOV	R3, LIMITE_128			; define o limite de bytes do pixel screen
 				ADD 	R3, R1				
-				MOV		R2, 0				; pixeis todos a 0		
+				MOV	R2, 0				; pixeis todos a 0		
 
-ciclo_screen:	CMP		R1, R3					; testa se chegou ao fim da matriz
-				JZ		fim_screen			; salta para fim_matriz caso tenha chegado
+ciclo_screen:			CMP	R1, R3				; testa se chegou ao fim da matriz
+				JZ	fim_screen			; salta para fim_matriz caso tenha chegado
 
-				MOVB	[R1], R2					; preenche os primeiros 8 bits com o valor
-				ADD		R1, 1				; passa para os proximos 8 bits
-				JMP 	ciclo_screen				; repete o ciclo at� ter limpo todo o pixel screen
+				MOVB	[R1], R2			; preenche os primeiros 8 bits com o valor
+				ADD	R1, 1				; passa para os proximos 8 bits
+				JMP 	ciclo_screen			; repete o ciclo at� ter limpo todo o pixel screen
 
-fim_screen:		POP 	R3						; restaura registos 
+fim_screen:			POP 	R3				; restaura registos 
 				POP 	R2
 				POP 	R1
 				RET
@@ -1609,14 +1609,14 @@ enche_screen:
 				ADD 	R3, R1				
 				MOV		R2, 0FFh				; pixeis todos a 1
 
-ciclo_preenche:	CMP		R1, R3				; testa se chegou ao fim
+ciclo_preenche:			CMP		R1, R3				; testa se chegou ao fim
 				JZ		fim_preenche		
 
 				MOVB	[R1], R2				; preenche os primeiros 8 bits com o valor
 				ADD		R1, 1			; passa para os proximos 8 bits
 				JMP 	ciclo_preenche		; repete o ciclo at� ter limpo toda a matriz
 
-fim_preenche:	POP 	R3						; restaura registos 
+fim_preenche:			POP 	R3						; restaura registos 
 				POP 	R2
 				POP 	R1
 				RET
@@ -1625,7 +1625,7 @@ fim_preenche:	POP 	R3						; restaura registos
 ; *********************************************************************************
 ; * Descri��o:		Fun�ao que faz a descodifica��o da tecla que foi premida.
 ; * Entrada:		--
-; * Sa�da:			R10 (Tecla premida)
+; * Sa�da:		R10 (Tecla premida)
 ; * Destr�i: 		--
 ; *********************************************************************************
 
@@ -1639,41 +1639,41 @@ teclado:
 				PUSH R7
 				PUSH R8
 				
-				MOV	R2, TECLADO_OUT		; R2 com o endere�o do perif�rico
+				MOV R2, TECLADO_OUT		; R2 com o endere�o do perif�rico
 				MOV R7, TECLADO_IN		
-				MOV R5,2				; � usado as potencias de dois para relacionar a linha com as entradas e saidas do teclado
+				MOV R5,2			; � usado as potencias de dois para relacionar a linha com as entradas e saidas do teclado
 				
 				MOV R6, 000FH			; m�scara para isolar o bit de menor peso
 				
-				MOV R8, 0				; R8 vai indicar qual a linha em teste
-				MOV	R1, 1				; R1 vai ter o input correspondente � linha em teste. Inicia com linha 0 (0001b)	
-				MOV R4, 4				; Limite para recome�ar o ciclo
+				MOV R8, 0			; R8 vai indicar qual a linha em teste
+				MOV R1, 1			; R1 vai ter o input correspondente � linha em teste. Inicia com linha 0 (0001b)	
+				MOV R4, 4			; Limite para recome�ar o ciclo
 				
-ciclo_scan:		MOVB [R2], R1			; escrever no porto de sa�da (teclado)
+ciclo_scan:			MOVB [R2], R1			; escrever no porto de sa�da (teclado)
 				MOVB R3, [R7]			; ler do porto de entrada (teclado)
-				AND R3, R6				; afectar as flags (MOVs n�o afectam as flags)
+				AND R3, R6			; afectar as flags (MOVs n�o afectam as flags)
 				JNZ fim_scan			; R3 != 0,  tecla premida
-				MUL R1, R5				; proxima linha 
+				MUL R1, R5			; proxima linha 
 				ADD R8, 1
 				CMP R8, R4
 				JLE ciclo_scan				
 				MOV R10, -1				; se a linha >= 4, n�o foi detectada nenhuma tecla. Retorna-se com R10 = -1
 				JMP teclado_fim
 			
-fim_scan:		MOV R4, 0				; inicializa o contador
+fim_scan:			MOV R4, 0				; inicializa o contador
 				
-ciclo_tecla: 	CMP R3, 1				; verifica se � igual a 1
+ciclo_tecla: 			CMP R3, 1				; verifica se � igual a 1
 				JZ fim_coluna				
 				DIV R3, R5				; divide sempre por 2
 				ADD R4, 1				; incrementa o contador
 				JMP ciclo_tecla
 		
 				; tecla (R10) = linha (R8) * 4 + coluna (R4)
-fim_coluna:		SHL R8,2
+fim_coluna:			SHL R8,2
 				ADD R8, R4
 				MOV R10, R8 			; guardar tecla premida em registo
 				
-teclado_fim:	POP R8
+teclado_fim:			POP R8
 				POP R7
 				POP R6
 				POP R5
@@ -1686,7 +1686,7 @@ teclado_fim:	POP R8
 ; *********************************************************************************
 ; * Descri��o:		Detectar flanco ascendente e descendente da tecla.
 ; * Entrada:		R10 (Tecla premida)
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 
@@ -1713,15 +1713,15 @@ detecta_flancos:
 				CMP R10, -1					; tecla (R10) == -1, � flanco descendente
 				JEQ dflancos_desc
 	
-				MOV R3, 0						; flanco ascendente = 0
+				MOV R3, 0					; flanco ascendente = 0
 				MOV [R4], R3
 				JMP dflancos_fim
 	
-dflancos_desc:	MOV R3, 1						; flanco descendente = 1
+dflancos_desc:			MOV R3, 1					; flanco descendente = 1
 				MOV [R4], R3 
 
 
-dflancos_fim:	POP R4
+dflancos_fim:			POP R4
 				POP R3
 				POP R2
 				POP R1
@@ -1731,7 +1731,7 @@ dflancos_fim:	POP R4
 ; *********************************************************************************
 ; * Descri��o:		Determina qual a ac��o a realizar e executa-a.
 ; * Entrada:		R10 (tecla premida)
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************	
 invoca_accao:
@@ -1744,36 +1744,36 @@ invoca_accao:
 				PUSH R6
 				PUSH R7
 				
-				MOV R0, table_teclado				; tabela com endere�os das rotinas a chamar
+				MOV R0, table_teclado					; tabela com endere�os das rotinas a chamar
 				MOV R1, tecla_transicao
 				MOV R2, disparar					; endere�o da rotina dispara
 				MOV R3, tecla_flanco
-				MOV R6, tecla_anterior				; tecla guardada da itera��o anterior
+				MOV R6, tecla_anterior					; tecla guardada da itera��o anterior
 
 				MOV R7, R10
 				MOV R10, [R6]
 				MOV [R6], R7						; guarda a tecla premida nesta itera��o para a pr�xima
 
 				MOV R1, [R1]						; R1 = 1 se houve transi�ao entre tecla pressionada e n�o pressionada
-				CMP R1, 0							; testar se alguma transi�ao foi detectada
+				CMP R1, 0						; testar se alguma transi�ao foi detectada
 				JEQ ia_fim 
 				
-				CMP R7, 5							; 5 � a tecla de dispara
+				CMP R7, 5						; 5 � a tecla de dispara
 				JNE ia_else
 				
 				CALL disparar
 				JMP ia_fim
 				
-ia_else:		MOV R4, [R3]
-				CMP R4, 1							; flanco descendente
+ia_else:			MOV R4, [R3]
+				CMP R4, 1						; flanco descendente
 				JNE ia_fim
 								
 				MOV R5, R10
-				SHL R5, 1							; R1 * 2
+				SHL R5, 1						; R1 * 2
 				MOV R0, [R0+R5]
 				CALL R0		
 				
-ia_fim:			MOV R10, R7						; repor tecla premida
+ia_fim:				MOV R10, R7						; repor tecla premida
 
 				POP R7
 				POP R6
@@ -1807,33 +1807,33 @@ mostra_energia:
 ; *********************************************************************************
 ; * Descri��o:		Mostra em formato decimal nos dois displays.
 ; * Entrada:		R10 (valor em hexadecimal)
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 
 display:
-			    PUSH R2					; guardar registos
-			    PUSH R3
-			    PUSH R4
-			    PUSH R5
+			    	PUSH R2					; guardar registos
+			    	PUSH R3
+			    	PUSH R4
+			    	PUSH R5
 			    
-			    MOV R3, R10				; coloca valor hexadecimal a mostrar num registo para as unidades
-			    MOV R4, R10				; coloca valor hexadecimal a mostrar num registo para as dezenas
+			    	MOV R3, R10				; coloca valor hexadecimal a mostrar num registo para as unidades
+			    	MOV R4, R10				; coloca valor hexadecimal a mostrar num registo para as dezenas
 				MOV R2, DEZ				; guarda constante 10, �til para fazer a divisao inteira e descobrir o resto da divisao inteira
 				
 				DIV R4, R2				; guarda o valor das dezenas (R4)
-			    MOD R3, R2				; guarda o valor das unidades (R3)
+				MOD R3, R2				; guarda o valor das unidades (R3)
 			    
-			    SHL R4, 4				; empurra nibble das dezenas para o nibble de maior peso
-			    OR  R4, R3				; junta o nibble das dezenas com os das unidades
-			    MOV R5, DISPLAY
-			    MOVB [R5], R4 			; escreve no porto de sa�da (POUT-1)
+			    	SHL R4, 4				; empurra nibble das dezenas para o nibble de maior peso
+			    	OR  R4, R3				; junta o nibble das dezenas com os das unidades
+			    	MOV R5, DISPLAY
+			    	MOVB [R5], R4 				; escreve no porto de sa�da (POUT-1)
 			   
-			   	POP R5					; restaurar registos
+			  	POP R5					; restaurar registos
 				POP R4
-			    POP R3
-			    POP R2
-			    RET
+			    	POP R3
+			    	POP R2
+			    	RET
 
 
 
