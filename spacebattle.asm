@@ -59,7 +59,7 @@ SP_inicial:						; este � o endere�o com que o SP deve ser inicializado.
 ; *********************************************************************************
 ; * Dados
 ; *********************************************************************************								
-table_pxscreen: 	WORD 10000000b	; 0 tabela de 8 m�scaras (cada uma s� com um bit a 1)
+table_pxscreen: 			WORD 10000000b	; 0 tabela de 8 m�scaras (cada uma s� com um bit a 1)
 					WORD 01000000b	; 1	para desenhar no pixel screen
 					WORD 00100000b	; 2
 					WORD 00010000b	; 3
@@ -68,16 +68,16 @@ table_pxscreen: 	WORD 10000000b	; 0 tabela de 8 m�scaras (cada uma s� com um
 					WORD 00000010b	; 6		
 					WORD 00000001b	; 7
 
-table_alien:		WORD 00000101b	; 1a linha
+table_alien:				WORD 00000101b	; 1a linha
 					WORD 00000010b	; 2a linha
 					WORD 00000101b	; 3a linha
 					
-table_nave: 		WORD 00000111b	; 1a linha
+table_nave: 				WORD 00000111b	; 1a linha
 					WORD 00000101b	; 2a linha
 					WORD 00000111b	; 3a linha
 
 
-table_x: 			WORD 0			; componente no eixo y da direcao no sistema de eixos do ecra
+table_x: 				WORD 0			; componente no eixo y da direcao no sistema de eixos do ecra
 					WORD 1
 					WORD 1
 					WORD 1
@@ -86,7 +86,7 @@ table_x: 			WORD 0			; componente no eixo y da direcao no sistema de eixos do ec
 					WORD -1
 					WORD -1
 
-table_y: 			WORD -1			; componente no eixo y da direcao no sistema de eixos do ecra
+table_y: 				WORD -1			; componente no eixo y da direcao no sistema de eixos do ecra
 					WORD -1
 					WORD 0
 					WORD 1
@@ -95,7 +95,7 @@ table_y: 			WORD -1			; componente no eixo y da direcao no sistema de eixos do e
 					WORD 0
 					WORD -1	
 
-teclado_direccao: 	WORD 7			; tabela para converter as teclas em orientacoes
+teclado_direccao: 			WORD 7			; tabela para converter as teclas em orientacoes
 					WORD 0			; o valor da tecla sera o indice 
 					WORD 1			; usa-se -1 para perfazer uma tabela de 16 entradas
 					WORD -1
@@ -116,7 +116,7 @@ nave_x: 			WORD NAVE_X_INICIAL
 nave_y: 			WORD NAVE_Y_INICIAL
 raio_on:			WORD RAIO_INICIAL
 energia:			WORD ENERGIA_INICIAL 		
-canhao_index:		WORD ORIENTACAO_INICIAL		; indice das tabelas y e x
+canhao_index:			WORD ORIENTACAO_INICIAL		; indice das tabelas y e x
 
 
 table_teclado:  			WORD andar 			; 0
@@ -136,22 +136,22 @@ table_teclado:  			WORD andar 			; 0
 					WORD nada 			; E
 					WORD nada 			; F
 					
-alien_x_inicial:	WORD ALIEN_X0_INICIAL	; tabela com posi��es x iniciais dos aliens para repor mais facilmente 
+alien_x_inicial:			WORD ALIEN_X0_INICIAL	; tabela com posi��es x iniciais dos aliens para repor mais facilmente 
 					WORD ALIEN_X1_INICIAL
 					WORD ALIEN_X2_INICIAL
 					WORD ALIEN_X3_INICIAL
 										
-alien_y_inicial:	WORD ALIEN_Y0_INICIAL	; tabela com posi��es y iniciais dos aliens para repor mais facilmente 
+alien_y_inicial:			WORD ALIEN_Y0_INICIAL	; tabela com posi��es y iniciais dos aliens para repor mais facilmente 
 					WORD ALIEN_Y1_INICIAL
 					WORD ALIEN_Y2_INICIAL
 					WORD ALIEN_Y3_INICIAL	
 						
-alien_x:			WORD ALIEN_X0_INICIAL	;  tabela com posi��es x dos aliens
+alien_x:				WORD ALIEN_X0_INICIAL	;  tabela com posi��es x dos aliens
 					WORD ALIEN_X1_INICIAL
 					WORD ALIEN_X2_INICIAL
 					WORD ALIEN_X3_INICIAL
 					
-alien_y:			WORD ALIEN_Y0_INICIAL	;  tabela com posi��es y dos aliens
+alien_y:				WORD ALIEN_Y0_INICIAL	;  tabela com posi��es y dos aliens
 					WORD ALIEN_Y1_INICIAL
 					WORD ALIEN_Y2_INICIAL
 					WORD ALIEN_Y3_INICIAL
