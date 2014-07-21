@@ -39,14 +39,14 @@ ORIENTACAO_INICIAL	EQU 1
 RAIO_INICIAL		EQU 0
 ENERGIA_TEMP		EQU 2
 TAMANHO_RAIO		EQU 5		; tamanho do raio, a contar do centro da nave
-ALIEN_X0_INICIAL    EQU 30
-ALIEN_Y0_INICIAL    EQU 30
-ALIEN_X1_INICIAL    EQU 1
-ALIEN_Y1_INICIAL    EQU 1
-ALIEN_X2_INICIAL    EQU 30
-ALIEN_Y2_INICIAL    EQU 1
-ALIEN_X3_INICIAL    EQU 1
-ALIEN_Y3_INICIAL    EQU 30
+ALIEN_X0_INICIAL    	EQU 30
+ALIEN_Y0_INICIAL    	EQU 30
+ALIEN_X1_INICIAL    	EQU 1
+ALIEN_Y1_INICIAL    	EQU 1
+ALIEN_X2_INICIAL    	EQU 30
+ALIEN_Y2_INICIAL    	EQU 1
+ALIEN_X3_INICIAL    	EQU 1
+ALIEN_Y3_INICIAL    	EQU 30
 ; *********************************************************************************
 ; * Stack 
 ; *********************************************************************************
@@ -119,20 +119,20 @@ energia:			WORD ENERGIA_INICIAL
 canhao_index:		WORD ORIENTACAO_INICIAL		; indice das tabelas y e x
 
 
-table_teclado:  	WORD andar 			; 0
+table_teclado:  			WORD andar 			; 0
 					WORD andar 			; 1
 					WORD andar 			; 2
 					WORD pausa 			; 3
 					WORD andar			; 4
-					WORD disparar 		; 5
+					WORD disparar 			; 5
 					WORD andar 			; 6
 					WORD sair 			; 7
 					WORD andar 			; 8
 					WORD andar 			; 9
 					WORD andar 			; A
 					WORD reset 			; B
-					WORD gira_esquerda  ; C
-					WORD gira_direita 	; D
+					WORD gira_esquerda  		; C
+					WORD gira_direita 		; D
 					WORD nada 			; E
 					WORD nada 			; F
 					
@@ -220,10 +220,10 @@ relogio_energia:
 				MOV R1, energia					; lï¿½ energia
 				MOV R2, [R1]
 				MOV R3, ENERGIA_TEMP
-				SUB R2, R3						; decrementa
+				SUB R2, R3					; decrementa
 				MOV [R1], R2					; escreve na memï¿½ria
 
-				MOV R2, redesenha_energia		; activar flag, para redesenhar
+				MOV R2, redesenha_energia			; activar flag, para redesenhar
 				MOV R1, 1
 				MOV [R2], R1
 
@@ -268,11 +268,11 @@ detecta_game_over:
 					CMP R2, 0
 					JLE go_terminado
 					
-					CALL detecta_colisao_aliens		; saida em R9
+					CALL detecta_colisao_aliens			; saida em R9
 					CMP R9, 1
 					JNE go_fim
 					
-go_terminado:		DI
+go_terminado:				DI
 					
 					MOV R2, 0
 					MOV [R1], R2 					; energia a zero
@@ -284,11 +284,11 @@ go_terminado:		DI
 					MOV R1, 1
 					MOV [R2], R1
 					
-					MOV R2, redesenha_energia		; activar flag, para redesenhar energia
+					MOV R2, redesenha_energia			; activar flag, para redesenhar energia
 					MOV R1, 1
 					MOV [R2], R1
 					
-go_fim:				POP R9
+go_fim:					POP R9
 					POP R3
 					POP R2
 					POP R1		
@@ -305,22 +305,22 @@ desenha_tudo:
 				PUSH R1
 				PUSH R2
 				
-				MOV R2, redesenha_energia		; nï¿½o mostra energia, se a flag estiver a 0. Para nï¿½o piscar
+				MOV R2, redesenha_energia			; nao mostra energia, se a flag estiver a 0. Para nï¿½o piscar
 				MOV R1, [R2]
 				CMP R1, 0
 				JEQ dt_screen
 				CALL mostra_energia	
 				
-				MOV R1, 0						; jï¿½ desenhou, limpa flag
+				MOV R1, 0					; ja' desenhou, limpa flag
 				MOV [R2], R1
 				
 				
-dt_screen:		MOV R2, redesenha				; nï¿½o desenha, se a flag estiver a 0. Para nï¿½o piscar
+dt_screen:		MOV R2, redesenha					; nao desenha, se a flag estiver a 0. Para nï¿½o piscar
 				MOV R1, [R2]
 				CMP R1, 0
 				JEQ dt_fim
 				
-				MOV R0, estado_jogo				; nï¿½o desenha, se terminado
+				MOV R0, estado_jogo				; nao desenha, se terminado
 				MOV R1, [R0]
 				CMP R1, TERMINADO
 				JEQ dt_terminado				; if terminado { enche_screen } else {desenha nave + aliens }
@@ -335,10 +335,10 @@ dt_screen:		MOV R2, redesenha				; nï¿½o desenha, se a flag estiver a 0. Para nï
 dt_terminado:   CALL enche_screen
 				
 				
-dt_if_fim:    	MOV R1, 0						; jï¿½ desenhou, limpa flag
+dt_if_fim:    			MOV R1, 0					; ja' desenhou, limpa flag
 				MOV [R2], R1
 				
-dt_fim:			POP R2
+dt_fim:				POP R2
 				POP R1
 				POP R0
 				RET
@@ -373,7 +373,7 @@ modifica_pixel:
 				MOV R5, OITO
 				DIV R4, R5
 				ADD R3, R4					; junta as duas partes, resultado em R3
-				MOV R5, PX_SCREEN 			; somar offset do endereco do ecra
+				MOV R5, PX_SCREEN 				; somar offset do endereco do ecra
 				ADD R3, R5
 		
 				; 2ï¿½ fase: descobrir qual a posiï¿½ï¿½o do bit a ser modificado do pixel screen
@@ -430,9 +430,9 @@ mover_aliens: 		PUSH R1
 					PUSH R5
 					PUSH R6
 				
-					MOV R5, 0 					; inicializa variavel de indice
+					MOV R5, 0 				; inicializa variavel de indice
 					MOV R6, N_ALIENS 			; inicializa numero de aliens (N)
-					SHL R6, 1					; N_ALIENS * 2
+					SHL R6, 1				; N_ALIENS * 2
 					MOV R3, alien_x
 					MOV R4, alien_y
 
@@ -448,10 +448,10 @@ percorre_aliens1:	CMP R5, R6
 					MOV [R3+R5], R1				; actualiza em memoria
 					MOV [R4+R5], R2 
 					
-					ADD R5, 2					; par/impar	
+					ADD R5, 2				; par/impar	
 					JMP percorre_aliens1
 
-terminou1:			MOV R2, redesenha			; activar flag, para redesenhar
+terminou1:			MOV R2, redesenha				; activar flag, para redesenhar
 					MOV R1, 1
 					MOV [R2], R1
 
@@ -493,19 +493,19 @@ aumenta_x: 		ADD R1,1         	; aumenta uma unidade ao x do alien
 				; 	Y	;
 				;;;;;;;;;
 
-fim_x:			MOV R6,nave_y    	; endereï¿½o nave_y
-				MOV R4,[R6]			; nave_y
+fim_x:				MOV R6,nave_y    	; endereï¿½o nave_y
+				MOV R4,[R6]		; nave_y
 				
 				CMP R4,R2			
-				JZ fim_y			; nave_y = alien_y
+				JZ fim_y		; nave_y = alien_y
 				JGT aumenta_y		; nave_y (R4) > alien_y (R2)
 				SUB R2,1
 				JMP fim_y
 		 		 
-aumenta_y: 		ADD R2,1
+aumenta_y: 			ADD R2,1
 
 
-fim_y: 			POP R6
+fim_y: 				POP R6
 				POP R5
 				POP R4
 				RET
@@ -517,7 +517,7 @@ fim_y: 			POP R6
 ; * Destrï¿½i:		--
 ; *********************************************************************************
 
-desenha_aliens:		PUSH R1
+desenha_aliens:				PUSH R1
 					PUSH R2
 					PUSH R3
 					PUSH R4
@@ -525,9 +525,9 @@ desenha_aliens:		PUSH R1
 					PUSH R6
 					PUSH R7
 				
-					MOV R5, 0 			; inicializa variavel de indice
+					MOV R5, 0 		; inicializa variavel de indice
 					MOV R6, N_ALIENS 	; inicializa numero de aliens
-					SHL R6, 1			; N_ALIENS * 2
+					SHL R6, 1		; N_ALIENS * 2
 					MOV R3, alien_x
 					MOV R4, alien_y
 
@@ -540,10 +540,10 @@ percorre_aliens:	CMP R5, R6
 					
 					CALL desenha_alien
 					
-					ADD R5, 2			; par/impar	
+					ADD R5, 2		; par/impar	
 					JMP percorre_aliens
 
-terminou:			POP R7
+terminou:				POP R7
 					POP R6
 					POP R5
 					POP R4
@@ -555,8 +555,8 @@ terminou:			POP R7
 ; *********************************************************************************
 ; * Descriï¿½ï¿½o:	Desenha um alien no ecra com base nas coordenadas X e Y, que ï¿½ o seu centro.
 ; * Entrada:		R1 (Coordenada X do centro do alien)
-;					R2 (Coordenada Y do centro do alien)
-; * Saï¿½da:	 		--
+;			R2 (Coordenada Y do centro do alien)
+; * Saï¿½da:	 	--
 ; * Destrï¿½i:		--
 ; *********************************************************************************
 
@@ -630,7 +630,7 @@ desenha_objecto:
 				
 				MOV R5, -1						; variavel do ciclo for 
 			
-ciclo_nave:		CMP R5, 2						; sair do ciclo quando for >= 3
+ciclo_nave:			CMP R5, 2						; sair do ciclo quando for >= 3
 				JGE fim_nave
 			
 				MOV R2, R4						; y_centro
@@ -641,7 +641,7 @@ ciclo_nave:		CMP R5, 2						; sair do ciclo quando for >= 3
 				ADD R7, 3
 				ADD R7, R10
 				
-				MOVB R6, [R7]					; ler o byte original da tabela
+				MOVB R6, [R7]						; ler o byte original da tabela
 	
 				MOV R9, R6
 				MOV R8, 00000100b
@@ -670,7 +670,7 @@ ciclo_nave:		CMP R5, 2						; sair do ciclo quando for >= 3
 				
 
 
-fim_nave:		MOV R1, R3						; restore de R1 (x_centro)
+fim_nave:			MOV R1, R3						; restore de R1 (x_centro)
 				MOV R2, R4						; restore de R2 (y_centro)
 				POP R9							; restaura registos
 				POP R8
@@ -684,7 +684,7 @@ fim_nave:		MOV R1, R3						; restore de R1 (x_centro)
 ; *********************************************************************************
 ; * Descriï¿½ï¿½o:		Verifica ataque aos aliens.
 ; * Entrada:		--
-; * Saï¿½da:			--
+; * Saï¿½da:		--
 ; * Destrï¿½i: 		-- 
 ; *********************************************************************************
 detecta_ataque:
@@ -717,25 +717,25 @@ detecta_ataque:
 				MOV R2, nave_y
 				MOV R1, [R1]					; x_nave
 				MOV R2, [R2]
-				MOV R10, TAMANHO_RAIO			; tamanho do raio, a contar do centro da nave
+				MOV R10, TAMANHO_RAIO				; tamanho do raio, a contar do centro da nave
 						
-				CALL coordenadas_raio			; entra R1, R2, R10. calcular coordenadas da ponta do raio. resultado em R3, R4
+				CALL coordenadas_raio				; entra R1, R2, R10. calcular coordenadas da ponta do raio. resultado em R3, R4
 		
 		
-				MOV R0, 0						; indice do loop
+				MOV R0, 0					; indice do loop
 				MOV R11 ,N_ALIENS
 				SHL R11 ,1		
-da_loop:		CMP R0, R11
+da_loop:			CMP R0, R11
 				JEQ da_fim
 
 
 				CALL detecta_ataque_alien
 
 				
-da_proximo:		ADD R0, 2						; par/impar
+da_proximo:			ADD R0, 2					; par/impar
 				JMP da_loop
 				
-da_fim:			POP R11
+da_fim:				POP R11
 				POP R10
 				POP R9
 				POP R8
@@ -754,7 +754,7 @@ da_fim:			POP R11
 ; * Entrada:		R0 (offset das tabelas alien_x, alien_y, alien_x_inicial, alien_y_inicial
 ;					R3 (x_raio)
 ;					R4 (y_raio)
-; * Saï¿½da:			--
+; * Saï¿½da:		--
 ; * Destrï¿½i: 		-- 
 ; *********************************************************************************
 detecta_ataque_alien:
@@ -794,7 +794,7 @@ detecta_ataque_alien:
 				
 				CALL add_bonus_energia				; incrementa o bonus de energia
 				
-daa_fim:		POP R11
+daa_fim:			POP R11
 				POP R10
 				POP R9
 				POP R8
@@ -908,17 +908,17 @@ detecta_colisao_aliens:
 				SHL R0, 1					; N_ALIENS * 2
 				
 				
-dca_loop: 		CMP R10, R0	
+dca_loop: 			CMP R10, R0	
 				JGE dca_fim_loop
 	
 				MOV R3, [R7+R10]			; x_alien
 				MOV R4, [R8+R10]			; y_alien
 	
-				CALL detecta_colisao		; retorna 1/0 em R9
+				CALL detecta_colisao			; retorna 1/0 em R9
 				CMP R9, 1
 				JEQ dca_fim_loop
 				
-				ADD R10, 2					; par/impar	
+				ADD R10, 2				; par/impar	
 				JMP dca_loop
 	
 dca_fim_loop:	POP R10
