@@ -517,40 +517,40 @@ fim_y: 				POP R6
 ; * Destr�i:		--
 ; *********************************************************************************
 
-desenha_aliens:				PUSH R1
-					PUSH R2
-					PUSH R3
-					PUSH R4
-					PUSH R5
-					PUSH R6
-					PUSH R7
+desenha_aliens:			PUSH R1
+				PUSH R2
+				PUSH R3
+				PUSH R4
+				PUSH R5
+				PUSH R6
+				PUSH R7
 				
-					MOV R5, 0 		; inicializa variavel de indice
-					MOV R6, N_ALIENS 	; inicializa numero de aliens
-					SHL R6, 1		; N_ALIENS * 2
-					MOV R3, alien_x
-					MOV R4, alien_y
+				MOV R5, 0 		; inicializa variavel de indice
+				MOV R6, N_ALIENS 	; inicializa numero de aliens
+				SHL R6, 1		; N_ALIENS * 2
+				MOV R3, alien_x
+				MOV R4, alien_y
 
 
-percorre_aliens:	CMP R5, R6
-					JGE terminou
+percorre_aliens:		CMP R5, R6
+				JGE terminou
 					
-					MOV R1,[R3+R5]		; alien_x
-					MOV R2, [R4+R5]		; alien_y
+				MOV R1,[R3+R5]		; alien_x
+				MOV R2, [R4+R5]		; alien_y
 					
-					CALL desenha_alien
+				CALL desenha_alien
 					
-					ADD R5, 2		; par/impar	
-					JMP percorre_aliens
+				ADD R5, 2		; par/impar	
+				JMP percorre_aliens
 
-terminou:				POP R7
-					POP R6
-					POP R5
-					POP R4
-					POP R3
-					POP R2
-					POP R1
-					RET
+terminou:			POP R7
+				POP R6
+				POP R5
+				POP R4
+				POP R3
+				POP R2
+				POP R1
+				RET
 
 ; *********************************************************************************
 ; * Descri��o:	Desenha um alien no ecra com base nas coordenadas X e Y, que � o seu centro.
@@ -561,11 +561,11 @@ terminou:				POP R7
 ; *********************************************************************************
 
 desenha_alien:
-					PUSH R10
-					MOV R10, table_alien 		; tabela com os pixeis do alien
-					CALL desenha_objecto		; entra R1, R2 e R10
-					POP R10
-					RET
+				PUSH R10
+				MOV R10, table_alien 		; tabela com os pixeis do alien
+				CALL desenha_objecto		; entra R1, R2 e R10
+				POP R10
+				RET
 
 ; *********************************************************************************
 ; * Descri��o:	Desenha um nave no ecra com base nas coordenadas X e Y, que � o seu centro.
@@ -831,7 +831,7 @@ add_bonus_energia:
 				
 				MOV  R1, R4	
 				
-abe_escreve:	MOV [R2], R1
+abe_escreve:			MOV [R2], R1
 				
 				MOV R2, redesenha_energia		; activar flag, para redesenhar
 				MOV R1, 1
@@ -848,11 +848,11 @@ abe_escreve:	MOV [R2], R1
 ; * Descri��o:		Verifica se existe colisao entre objectos.
 ;					|x_1 - x_2 | <= d AND |y_1 - y_2| <= d
 ; * Entrada:		R1 (x do objecto 1)
-;					R2 (y do objecto 1)
-;					R3 (x do objecto 2)
-;					R4 (y do objecto 2)
-;					R5 ( distancia limite da colis�o )
-; * Sa�da:			R9 (Colisao = 1 / Sem colisao = 0)
+;			R2 (y do objecto 1)
+;			R3 (x do objecto 2)
+;			R4 (y do objecto 2)
+;			R5 ( distancia limite da colis�o )
+; * Sa�da:		R9 (Colisao = 1 / Sem colisao = 0)
 ; * Destr�i: 		R3, R4
 ; *********************************************************************************
 detecta_colisao:
@@ -903,9 +903,9 @@ detecta_colisao_aliens:
 				
 				MOV R5, DOIS				; dist�ncia limite da colis�o entre nave e aliens
 				
-				MOV R10, 0 					; inicializa variavel do indice
+				MOV R10, 0 				; inicializa variavel do indice
 				MOV R0, N_ALIENS
-				SHL R0, 1					; N_ALIENS * 2
+				SHL R0, 1				; N_ALIENS * 2
 				
 				
 dca_loop: 			CMP R10, R0	
@@ -921,7 +921,7 @@ dca_loop: 			CMP R10, R0
 				ADD R10, 2				; par/impar	
 				JMP dca_loop
 	
-dca_fim_loop:	POP R10
+dca_fim_loop:			POP R10
 				POP R8
 				POP R7			
 				POP R6
@@ -958,12 +958,12 @@ gira_direita:
 				MOV R4, [R3]
 				
 				MOV R6, nave_x
-				MOV R6, [R6]					; x_nave
+				MOV R6, [R6]				; x_nave
 				MOV R7, nave_y
-				MOV R7, [R7]					; y_nave
+				MOV R7, [R7]				; y_nave
 				
 				; parede � esquerda
-				CMP R6, 1						; x_nave = 1, canhao_index = 4, n�o incrementar
+				CMP R6, 1				; x_nave = 1, canhao_index = 4, n�o incrementar
 				JNE fim_parede_e
 				CMP R4, 4
 				JEQ fim
@@ -971,29 +971,29 @@ gira_direita:
 				; parede � direita
 fim_parede_e:			MOV R5, TAMANHO_PX
 				SUB R5, 2
-				CMP R6, R5						; x_nave = 31, canhao_index = 0, n�o incrementar		
+				CMP R6, R5				; x_nave = 31, canhao_index = 0, n�o incrementar		
 				JNE fim_parede_d	
 				CMP R4, 0
 				JEQ fim		
 				
 				; parede em cima
-fim_parede_d:			CMP R7, 1						; y_nave = 1, canhao_index = 6, n�o incrementar		
+fim_parede_d:			CMP R7, 1				; y_nave = 1, canhao_index = 6, n�o incrementar		
 				JNE fim_parede_c
 				CMP R4, 6
 				JEQ fim	
 
 				; parede em baixo
-fim_parede_c:			CMP R7, R5						; y_nave = 31, canhao_index = 2, n�o incrementar		
+fim_parede_c:			CMP R7, R5				; y_nave = 31, canhao_index = 2, n�o incrementar		
 				JNE fim_parede_b
 				CMP R4, 2
 				JEQ fim	
 				
-fim_parede_b:			ADD R4, 1 						; incrementa o indice da direccao
+fim_parede_b:			ADD R4, 1 				; incrementa o indice da direccao
 				MOV R5, 00000111b	 
-				AND R4, R5						; mascara para voltar para o zero  (incrementa entre 0 e 7)
+				AND R4, R5				; mascara para voltar para o zero  (incrementa entre 0 e 7)
 				MOV [R3], R4
 				
-fim:				MOV R2, redesenha					; activar flag, para redesenhar
+fim:				MOV R2, redesenha			; activar flag, para redesenhar
 				MOV R1, 1
 				MOV [R2], R1
 					
@@ -1027,7 +1027,7 @@ gira_esquerda:
 				
 				MOV R7, estado_jogo 			; verificar o estado do jogo
 				MOV R8, [R7]
-				CMP R8, NORMAL					; em caso afirmativo o canhao n�o gira
+				CMP R8, NORMAL				; em caso afirmativo o canhao n�o gira
 				JNE fim1
 							
 				
@@ -1035,12 +1035,12 @@ gira_esquerda:
 				MOV R4, [R3]
 				
 				MOV R6, nave_x
-				MOV R6, [R6]					; x_nave
+				MOV R6, [R6]				; x_nave
 				MOV R7, nave_y
-				MOV R7, [R7]					; y_nave
+				MOV R7, [R7]				; y_nave
 				
 				; parede � esquerda
-				CMP R6, 1						; x_nave = 1, canhao_index = 0, n�o incrementar
+				CMP R6, 1				; x_nave = 1, canhao_index = 0, n�o incrementar
 				JNE fim_parede_e1
 				CMP R4, 0
 				JEQ fim1
@@ -1048,31 +1048,31 @@ gira_esquerda:
 				; parede � direita
 fim_parede_e1:			MOV R5, TAMANHO_PX
 				SUB R5, 2
-				CMP R6, R5						; x_nave = 31, canhao_index = 4, n�o incrementar		
+				CMP R6, R5				; x_nave = 31, canhao_index = 4, n�o incrementar		
 				JNE fim_parede_d1	
 				CMP R4, 4
 				JEQ fim1		
 				
 				; parede em cima
-fim_parede_d1:			CMP R7, 1						; y_nave = 1, canhao_index = 2, n�o incrementar		
+fim_parede_d1:			CMP R7, 1				; y_nave = 1, canhao_index = 2, n�o incrementar		
 				JNE fim_parede_c1
 				CMP R4, 2
 				JEQ fim1	
 
 				; parede em baixo
-fim_parede_c1:			CMP R7, R5						; y_nave = 31, canhao_index = 6, n�o incrementar		
+fim_parede_c1:			CMP R7, R5				; y_nave = 31, canhao_index = 6, n�o incrementar		
 				JNE fim_parede_b1
 				CMP R4, 6
 				JEQ fim1
 
 				
-fim_parede_b1:			SUB R4, 1 						; decrementa o indice da direccao
+fim_parede_b1:			SUB R4, 1 				; decrementa o indice da direccao
 				MOV R5, 00000111b	 
-				AND R4, R5						; mascara para voltar para o zero (decrementa entre 0 e 7)
+				AND R4, R5				; mascara para voltar para o zero (decrementa entre 0 e 7)
 				MOV [R3], R4	
 				
 				
-fim1:				MOV R2, redesenha				; activar flag, para redesenhar
+fim1:				MOV R2, redesenha			; activar flag, para redesenhar
 				MOV R1, 1
 				MOV [R2], R1
 				
@@ -1089,12 +1089,12 @@ fim1:				MOV R2, redesenha				; activar flag, para redesenhar
 
 ; *********************************************************************************
 ; * Descri��o:	Calcula as coordenadas a uma determinada dist�ncia, segundo a orienta��o do canh�o.
-; * Entrada:		R1 (posi�ao x do centro da nave)
-;					R2 (posicao y do centro da nave)
-;					R10 (distancia do raio)
+; * Entrada:	R1 (posi�ao x do centro da nave)
+;		R2 (posicao y do centro da nave)
+;		R10 (distancia do raio)
 ;
-; * Sa�da:			R3 (posi��o x do raio)
-;					R4 (posi��o y do raio)
+; * Sa�da:	R3 (posi��o x do raio)
+;		R4 (posi��o y do raio)
 ; * Destr�i: 		--
 ; *********************************************************************************
 coordenadas_raio:
@@ -1173,22 +1173,22 @@ desenha_raio:
 				PUSH R9
 				PUSH R10
 
-				MOV R10, 2						; tamanho 2 do raio (corresponde ao canhao)
+				MOV R10, 2				; tamanho 2 do raio (corresponde ao canhao)
 				
-dr_loop:		CMP R10, TAMANHO_RAIO
+dr_loop:			CMP R10, TAMANHO_RAIO
 				JGT dr_fim
 
-				MOV R5, R1						; guardar x_nave, porque modifica_pixel precisa de R1 com outro valor
+				MOV R5, R1				; guardar x_nave, porque modifica_pixel precisa de R1 com outro valor
 				MOV R6, R2
 				CALL coordenadas_raio 			; saidas em R3 e R4
 
 
 				MOV R1, R3
 				MOV R2, R4
-				MOV R9, 1						; 1 para acender o pixel
+				MOV R9, 1				; 1 para acender o pixel
 				
 				; n�o deixa desejar para al�m das paredes do ecra
-				MOV R7, TAMANHO_PX				; parede da direita
+				MOV R7, TAMANHO_PX			; parede da direita
 				CMP R1, R7
 				JGE dr_fim
 
@@ -1209,7 +1209,7 @@ dr_loop:		CMP R10, TAMANHO_RAIO
 				ADD R10, 1						; pr�ximo pixel do raio
 				JMP dr_loop
 				
-dr_fim:			POP R10
+dr_fim:				POP R10
 				POP R9
 				POP R7
 				POP R6
@@ -1222,7 +1222,7 @@ dr_fim:			POP R10
 ; *********************************************************************************
 ; * Descri��o:		Fun��o que altera a posi��o da nave.
 ; * Entrada:		R10 (Tecla premida)
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 
@@ -1238,33 +1238,33 @@ andar:
 				PUSH R1
 				PUSH R0
 				
-				MOV R0, 0						; flag para detectar movimento para a energia
+				MOV R0, 0				; flag para detectar movimento para a energia
 				
 				MOV R7, estado_jogo 			; verificar o estado do jogo
 				MOV R8, [R7]
-				CMP R8, NORMAL					; em caso afirmativo n�o anda
+				CMP R8, NORMAL				; em caso afirmativo n�o anda
 				JNE fim_andar_y
 
 				MOV R7, teclado_direccao
 				
 				MOV R4, R10
-				SHL R4, 1						; R4 * 2, par/impar
-				MOV R3, [R7+R4]					; orientacao do movimento em R3
-				SHL R3, 1						; R3 * 2, par/impar
+				SHL R4, 1				; R4 * 2, par/impar
+				MOV R3, [R7+R4]				; orientacao do movimento em R3
+				SHL R3, 1				; R3 * 2, par/impar
 				
 				;;;;;;;;;
 				; 	X	;
 				;;;;;;;;;
 				
 				MOV R7, table_x
-				MOV R1, [R7 + R3]				; componente x do movimento
+				MOV R1, [R7 + R3]			; componente x do movimento
 				CMP R1, 0
 				JEQ fim_andar_x
 				
 				MOV R9, canhao_index	
 				MOV R9, [R9]
-				SHL R9, 1						; R9 * 2		
-				MOV R9, [R7+R9]					; componente x da orientacao do canhao, x_canhao (R9)
+				SHL R9, 1				; R9 * 2		
+				MOV R9, [R7+R9]				; componente x da orientacao do canhao, x_canhao (R9)
 		
 				; x_novo (R5) = x_antigo (R5) + e_x (R1)
 				MOV R7, nave_x
@@ -1274,37 +1274,37 @@ andar:
 				; testar x_novo com a parede da direita
 				MOV R8, TAMANHO_PX				; limite (R8) a ser construido
 				SUB R8, 1
-				CMP R9,0						; se x_canhao (R9) >= 0, o limite (R8) decresce 1
+				CMP R9,0					; se x_canhao (R9) >= 0, o limite (R8) decresce 1
 				JLT fim_canhao_x_d
 				SUB R8, R9		
-fim_canhao_x_d:	CMP R5, R8 
+fim_canhao_x_d:			CMP R5, R8 
 				JGE fim_andar_x					; fora da parede da direita. nao se actualiza e nao se testa a parede da esquerda
 
 				; testar x_novo com a parede da esquerda
 				MOV R8, 1						
-				CMP R9, 0						; se x_canhao (R9) <= 0, o limite (R8) cresce 1
+				CMP R9, 0					; se x_canhao (R9) <= 0, o limite (R8) cresce 1
 				JGT fim_canhao_x_e
 				SUB R8, R9				
-fim_canhao_x_e: CMP R5,R8
+fim_canhao_x_e: 		CMP R5,R8
 				JLT fim_andar_x
 				
 				; limites X testados, actualizar memoria	
 				MOV [R7], R5					; actualiza x_novo em memoria
-				MOV R0, 1						; movimento efectuado
+				MOV R0, 1					; movimento efectuado
 				
 				
 				;;;;;;;;;
 				; 	Y	;
 				;;;;;;;;;
 				
-fim_andar_x:	MOV R7, table_y
+fim_andar_x:			MOV R7, table_y
 				MOV R2, [R7 + R3]				; componente y do movimento
 				CMP R2, 0
 				JEQ fim_andar_y
 				
 				MOV R9, canhao_index	
 				MOV R9, [R9]
-				SHL R9, 1						; R9 * 2		
+				SHL R9, 1					; R9 * 2		
 				MOV R9, [R7+R9]					; componente y da orientacao do canhao, y_canhao (R9)				
 				
 				
@@ -1316,7 +1316,7 @@ fim_andar_x:	MOV R7, table_y
 				; testar y_novo com a parede de baixo
 				MOV R8, TAMANHO_PX				; limite (R8) a ser construido
 				SUB R8, 1
-				CMP R9,0						; se y_canhao (R9) >= 0, o limite (R8) decresce 1
+				CMP R9,0					; se y_canhao (R9) >= 0, o limite (R8) decresce 1
 				JLT fim_canhao_y_b
 				SUB R8, R9		
 fim_canhao_y_b:	CMP R6, R8 
@@ -1324,26 +1324,26 @@ fim_canhao_y_b:	CMP R6, R8
 				
 				; testar y_novo com a parede de cima
 				MOV R8, 1
-				CMP R9, 0						; se x_canhao (R9) <= 0, o limite (R8) cresce 1
+				CMP R9, 0					; se x_canhao (R9) <= 0, o limite (R8) cresce 1
 				JGT fim_canhao_y_c
 				SUB R8, R9				
-fim_canhao_y_c: CMP R6,R8
+fim_canhao_y_c: 		CMP R6,R8
 				JLT fim_andar_y
 				
 				; limites Y testados, actualizar memoria	
 				MOV [R7], R6
-				MOV R0, 1						; movimento efectuado
+				MOV R0, 1					; movimento efectuado
 				
-fim_andar_y:	MOV R7, energia
+fim_andar_y:			MOV R7, energia
 				MOV R6, [R7]
-				SUB R6, R0						; R0 tem 0 ou 1 consoante movimentos efectuados ou nao
+				SUB R6, R0					; R0 tem 0 ou 1 consoante movimentos efectuados ou nao
 				MOV [R7], R6
 				
 				MOV R2, redesenha				; activar flag, para redesenhar
-				MOV R1, R0						;  R0 tem 0 ou 1 consoante movimentos efectuados ou nao
+				MOV R1, R0					;  R0 tem 0 ou 1 consoante movimentos efectuados ou nao
 				MOV [R2], R1
 				
-				MOV R2, redesenha_energia		; activar flag, para redesenhar energia
+				MOV R2, redesenha_energia			; activar flag, para redesenhar energia
 				MOV R1, R0
 				MOV [R2], R1
 				
@@ -1416,7 +1416,7 @@ dispa_fim:			POP R6
 ; *********************************************************************************
 ; * Descri��o:		Interrompe o jogo at� ser chamada novamente ou o jogo recome�ado.
 ; * Entrada:		--
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 
@@ -1570,7 +1570,7 @@ r_fim_loop:			MOV R0, redesenha			; activar flag, para redesenhar
 ; * Destr�i: 	--
 ; *********************************************************************************
 limpa_screen:
-				PUSH R1				; salvaguarda registos
+				PUSH R1					; salvaguarda registos
 				PUSH R2
 				PUSH R3
 		
@@ -1657,15 +1657,15 @@ ciclo_scan:			MOVB [R2], R1			; escrever no porto de sa�da (teclado)
 				ADD R8, 1
 				CMP R8, R4
 				JLE ciclo_scan				
-				MOV R10, -1				; se a linha >= 4, n�o foi detectada nenhuma tecla. Retorna-se com R10 = -1
+				MOV R10, -1			; se a linha >= 4, n�o foi detectada nenhuma tecla. Retorna-se com R10 = -1
 				JMP teclado_fim
 			
-fim_scan:			MOV R4, 0				; inicializa o contador
+fim_scan:			MOV R4, 0			; inicializa o contador
 				
-ciclo_tecla: 			CMP R3, 1				; verifica se � igual a 1
+ciclo_tecla: 			CMP R3, 1			; verifica se � igual a 1
 				JZ fim_coluna				
-				DIV R3, R5				; divide sempre por 2
-				ADD R4, 1				; incrementa o contador
+				DIV R3, R5			; divide sempre por 2
+				ADD R4, 1			; incrementa o contador
 				JMP ciclo_tecla
 		
 				; tecla (R10) = linha (R8) * 4 + coluna (R4)
@@ -1788,7 +1788,7 @@ ia_fim:				MOV R10, R7						; repor tecla premida
 ; *********************************************************************************
 ; * Descri��o:		Mostra energia nos displays.
 ; * Entrada:		--
-; * Sa�da:			--
+; * Sa�da:		--
 ; * Destr�i: 		--
 ; *********************************************************************************
 
