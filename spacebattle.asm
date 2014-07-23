@@ -174,8 +174,8 @@ tabela_interrupcoes:	WORD relogio_aliens
 ; * C�digo
 ; *********************************************************************************
 PLACE			0000H						; o c�digo tem de come�ar em 0000H
-inicio:			MOV	SP, SP_inicial				; inicializa SP para a palavra a seguir � �ltima da pilha
-				MOV	BTE, tabela_interrupcoes	; incializa BTE
+inicio:				MOV SP, SP_inicial			; inicializa SP para a palavra a seguir � �ltima da pilha
+				MOV BTE, tabela_interrupcoes		; incializa BTE
 
 			   	CALL desenha_tudo		
 
@@ -186,7 +186,6 @@ ciclo_inicio:			CALL teclado
 
 				CALL detecta_flancos			; detectar tecla pressionada ou largada
 
-				
 				CALL invoca_accao				
 				CALL detecta_game_over	
 				CALL detecta_ataque		
@@ -347,10 +346,10 @@ dt_fim:				POP R2
 ; *********************************************************************************
 ; * Descri��o:	Altera/modifica no ecra o pixel nas coordenadas X e Y. 
 ; * Entrada:	R1 (Coordenada X do ecra)
-;         		R2 (Coordenada Y do ecra)
+;         	R2 (Coordenada Y do ecra)
 ;             	R9 (Accao a fazer: apagar = 0 / acender = 1)
-; * Sa�da:			--
-; * Destr�i:		--
+; * Sa�da:	--
+; * Destr�i:	--
 ; *********************************************************************************
 ; * Notas:
 ; *(0,0) do pixelscreen � o canto superior esquerdo.
@@ -418,9 +417,9 @@ fim_if:				MOVB [R3], R8
 
 ; *********************************************************************************
 ; * Descri��o:	Move N aliens com base nas coordenadas da tabela.
-; * Entrada:		--
-; * Sa�da:	 		--
-; * Destr�i:		--
+; * Entrada:	--
+; * Sa�da:	--
+; * Destr�i:	--
 ; *********************************************************************************
 
 mover_aliens: 				PUSH R1
@@ -465,9 +464,9 @@ terminou1:				MOV R2, redesenha			; activar flag, para redesenhar
 
 ; *********************************************************************************
 ; * Descri��o:	Andar aliens
-; * Entrada:		R1 (x_alien), R2 (y_alien)
-; * Sa�da:	 		R1 (x_alien), R2 (y_alien)
-; * Destr�i:		--
+; * Entrada:	R1 (x_alien), R2 (y_alien)
+; * Sa�da:	R1 (x_alien), R2 (y_alien)
+; * Destr�i:	--
 ; *********************************************************************************
 
 andar_alien:	 
@@ -512,9 +511,9 @@ fim_y: 				POP R6
 
 ; *********************************************************************************
 ; * Descri��o:	Desenha N aliens com base nas coordenadas da tabela.
-; * Entrada:		--
-; * Sa�da:	 		--
-; * Destr�i:		--
+; * Entrada:	--
+; * Sa�da:	--
+; * Destr�i:	--
 ; *********************************************************************************
 
 desenha_aliens:			PUSH R1
@@ -554,10 +553,10 @@ terminou:			POP R7
 
 ; *********************************************************************************
 ; * Descri��o:	Desenha um alien no ecra com base nas coordenadas X e Y, que � o seu centro.
-; * Entrada:		R1 (Coordenada X do centro do alien)
-;			R2 (Coordenada Y do centro do alien)
-; * Sa�da:	 	--
-; * Destr�i:		--
+; * Entrada:	R1 (Coordenada X do centro do alien)
+;		R2 (Coordenada Y do centro do alien)
+; * Sa�da:	--
+; * Destr�i:	--
 ; *********************************************************************************
 
 desenha_alien:
@@ -569,9 +568,9 @@ desenha_alien:
 
 ; *********************************************************************************
 ; * Descri��o:	Desenha um nave no ecra com base nas coordenadas X e Y, que � o seu centro.
-; * Entrada:		--
-; * Sa�da:	 	--
-; * Destr�i:		--
+; * Entrada:	--
+; * Sa�da:	 --
+; * Destr�i:	--
 ; *********************************************************************************
 
 desenha_nave:
@@ -607,11 +606,11 @@ fim_des_nave:			POP R10
 
 ; *********************************************************************************
 ; * Descri��o:	Desenha um objecto (nave/alien) no ecra com base nas coordenadas X e Y, que � o seu centro.
-; * Entrada:		R1 (Coordenada X do centro do objecto)
-;			R2 (Coordenada Y do centro do objecto)
-;			R10 (Tabelas da nave ou do alien)
-; * Sa�da:	 	--
-; * Destr�i:		--
+; * Entrada:	R1 (Coordenada X do centro do objecto)
+;		R2 (Coordenada Y do centro do objecto)
+;		R10 (Tabelas da nave ou do alien)
+; * Sa�da:	--
+; * Destr�i:	--
 ; *********************************************************************************
 ; * Notas:
 ; * O objecto tem 3x3 pixeis
