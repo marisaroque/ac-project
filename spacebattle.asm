@@ -50,66 +50,66 @@ ALIEN_Y3_INICIAL    	EQU 30
 ; *********************************************************************************
 ; * Stack 
 ; *********************************************************************************
-PLACE		1000H					; localiza blocos de dados
+PLACE			1000H		; localiza blocos de dados
 			
-pilha:		TABLE 200H				; espa�o reservado para a pilha 
+pilha:			TABLE 200H	; espa�o reservado para a pilha 
 
-SP_inicial:						; este � o endere�o com que o SP deve ser inicializado. 
+SP_inicial:				; este � o endere�o com que o SP deve ser inicializado. 
 
 ; *********************************************************************************
 ; * Dados
 ; *********************************************************************************								
-table_pxscreen: 			WORD 10000000b	; 0 tabela de 8 m�scaras (cada uma s� com um bit a 1)
-					WORD 01000000b	; 1	para desenhar no pixel screen
-					WORD 00100000b	; 2
-					WORD 00010000b	; 3
-					WORD 00001000b	; 4
-					WORD 00000100b	; 5	
-					WORD 00000010b	; 6		
-					WORD 00000001b	; 7
+table_pxscreen: 		WORD 10000000b	; 0 tabela de 8 m�scaras (cada uma s� com um bit a 1)
+				WORD 01000000b	; 1	para desenhar no pixel screen
+				WORD 00100000b	; 2
+				WORD 00010000b	; 3
+				WORD 00001000b	; 4
+				WORD 00000100b	; 5	
+				WORD 00000010b	; 6		
+				WORD 00000001b	; 7
 
-table_alien:				WORD 00000101b	; 1a linha
-					WORD 00000010b	; 2a linha
-					WORD 00000101b	; 3a linha
+table_alien:			WORD 00000101b	; 1a linha
+				WORD 00000010b	; 2a linha
+				WORD 00000101b	; 3a linha
 					
-table_nave: 				WORD 00000111b	; 1a linha
-					WORD 00000101b	; 2a linha
-					WORD 00000111b	; 3a linha
+table_nave: 			WORD 00000111b	; 1a linha
+				WORD 00000101b	; 2a linha
+				WORD 00000111b	; 3a linha
 
 
-table_x: 				WORD 0			; componente no eixo y da direcao no sistema de eixos do ecra
-					WORD 1
-					WORD 1
-					WORD 1
-					WORD 0
-					WORD -1
-					WORD -1
-					WORD -1
+table_x: 			WORD 0			; componente no eixo y da direcao no sistema de eixos do ecra
+				WORD 1
+				WORD 1
+				WORD 1
+				WORD 0
+				WORD -1
+				WORD -1
+				WORD -1
 
-table_y: 				WORD -1			; componente no eixo y da direcao no sistema de eixos do ecra
-					WORD -1
-					WORD 0
-					WORD 1
-					WORD 1
-					WORD 1
-					WORD 0
-					WORD -1	
+table_y: 			WORD -1			; componente no eixo y da direcao no sistema de eixos do ecra
+				WORD -1
+				WORD 0
+				WORD 1
+				WORD 1
+				WORD 1
+				WORD 0
+				WORD -1	
 
-teclado_direccao: 			WORD 7			; tabela para converter as teclas em orientacoes
-					WORD 0			; o valor da tecla sera o indice 
-					WORD 1			; usa-se -1 para perfazer uma tabela de 16 entradas
-					WORD -1
-					WORD 6
-					WORD -1
-					WORD 2
-					WORD -1
-					WORD 5
-					WORD 4
-					WORD 3
-					WORD -1
-					WORD -1
-					WORD -1
-					WORD -1
+teclado_direccao: 		WORD 7			; tabela para converter as teclas em orientacoes
+				WORD 0			; o valor da tecla sera o indice 
+				WORD 1			; usa-se -1 para perfazer uma tabela de 16 entradas
+				WORD -1
+				WORD 6
+				WORD -1
+				WORD 2
+				WORD -1
+				WORD 5
+				WORD 4
+				WORD 3
+				WORD -1
+				WORD -1
+				WORD -1
+				WORD -1
 					
 					
 nave_x: 			WORD NAVE_X_INICIAL
@@ -119,61 +119,61 @@ energia:			WORD ENERGIA_INICIAL
 canhao_index:			WORD ORIENTACAO_INICIAL		; indice das tabelas y e x
 
 
-table_teclado:  			WORD andar 			; 0
-					WORD andar 			; 1
-					WORD andar 			; 2
-					WORD pausa 			; 3
-					WORD andar			; 4
-					WORD disparar 			; 5
-					WORD andar 			; 6
-					WORD sair 			; 7
-					WORD andar 			; 8
-					WORD andar 			; 9
-					WORD andar 			; A
-					WORD reset 			; B
-					WORD gira_esquerda  		; C
-					WORD gira_direita 		; D
-					WORD nada 			; E
-					WORD nada 			; F
+table_teclado:  		WORD andar 			; 0
+				WORD andar 			; 1
+				WORD andar 			; 2
+				WORD pausa 			; 3
+				WORD andar			; 4
+				WORD disparar 			; 5
+				WORD andar 			; 6
+				WORD sair 			; 7
+				WORD andar 			; 8
+				WORD andar 			; 9
+				WORD andar 			; A
+				WORD reset 			; B
+				WORD gira_esquerda  		; C
+				WORD gira_direita 		; D
+				WORD nada 			; E
+				WORD nada 			; F
 					
-alien_x_inicial:			WORD ALIEN_X0_INICIAL	; tabela com posi��es x iniciais dos aliens para repor mais facilmente 
-					WORD ALIEN_X1_INICIAL
-					WORD ALIEN_X2_INICIAL
-					WORD ALIEN_X3_INICIAL
+alien_x_inicial:		WORD ALIEN_X0_INICIAL	; tabela com posi��es x iniciais dos aliens para repor mais facilmente 
+				WORD ALIEN_X1_INICIAL
+				WORD ALIEN_X2_INICIAL
+				WORD ALIEN_X3_INICIAL
 										
-alien_y_inicial:			WORD ALIEN_Y0_INICIAL	; tabela com posi��es y iniciais dos aliens para repor mais facilmente 
-					WORD ALIEN_Y1_INICIAL
-					WORD ALIEN_Y2_INICIAL
-					WORD ALIEN_Y3_INICIAL	
+alien_y_inicial:		WORD ALIEN_Y0_INICIAL	; tabela com posi��es y iniciais dos aliens para repor mais facilmente 
+				WORD ALIEN_Y1_INICIAL
+				WORD ALIEN_Y2_INICIAL
+				WORD ALIEN_Y3_INICIAL	
 						
-alien_x:				WORD ALIEN_X0_INICIAL	;  tabela com posi��es x dos aliens
-					WORD ALIEN_X1_INICIAL
-					WORD ALIEN_X2_INICIAL
-					WORD ALIEN_X3_INICIAL
+alien_x:			WORD ALIEN_X0_INICIAL	;  tabela com posi��es x dos aliens
+				WORD ALIEN_X1_INICIAL
+				WORD ALIEN_X2_INICIAL
+				WORD ALIEN_X3_INICIAL
 					
-alien_y:				WORD ALIEN_Y0_INICIAL	;  tabela com posi��es y dos aliens
-					WORD ALIEN_Y1_INICIAL
-					WORD ALIEN_Y2_INICIAL
-					WORD ALIEN_Y3_INICIAL
+alien_y:			WORD ALIEN_Y0_INICIAL	;  tabela com posi��es y dos aliens
+				WORD ALIEN_Y1_INICIAL
+				WORD ALIEN_Y2_INICIAL
+				WORD ALIEN_Y3_INICIAL
 
 					
-estado_jogo: 		WORD NORMAL
-redesenha:		WORD 1
-redesenha_energia:	WORD 1
+estado_jogo: 			WORD NORMAL
+redesenha:			WORD 1
+redesenha_energia:		WORD 1
 				
 				
-tecla_flanco:		WORD 0					; 0 = flanco ascendente; 1 flanco descendente
-tecla_transicao:	WORD 0					; 0 = sem transi��o; 1 = com transi�ao
-tecla_anterior:		WORD -1					; guarda a tecla pressionada entre itera��es, para detectar transi��es
+tecla_flanco:			WORD 0			; 0 = flanco ascendente; 1 flanco descendente
+tecla_transicao:		WORD 0			; 0 = sem transi��o; 1 = com transi�ao
+tecla_anterior:			WORD -1			; guarda a tecla pressionada entre itera��es, para detectar transi��es
 
 ; Tabela de vectores de interrup��o
-tabela_interrupcoes:	WORD relogio_aliens
-			WORD relogio_energia						
+tabela_interrupcoes:		WORD relogio_aliens
+				WORD relogio_energia						
 
 ; *********************************************************************************
 ; * C�digo
 ; *********************************************************************************
-PLACE			0000H						; o c�digo tem de come�ar em 0000H
+PLACE				0000H					; o c�digo tem de come�ar em 0000H
 inicio:				MOV SP, SP_inicial			; inicializa SP para a palavra a seguir � �ltima da pilha
 				MOV BTE, tabela_interrupcoes		; incializa BTE
 
@@ -252,46 +252,46 @@ relogio_aliens:
 ; *********************************************************************************
 
 detecta_game_over:
-					PUSH R1
-					PUSH R2
-					PUSH R3
-					PUSH R9
+				PUSH R1
+				PUSH R2
+				PUSH R3
+				PUSH R9
 					
-					MOV R3, estado_jogo				; nao detecta se j� terminado
-					MOV R2, [R3] 
-					CMP R2, TERMINADO
-					JEQ go_fim
+				MOV R3, estado_jogo				; nao detecta se j� terminado
+				MOV R2, [R3] 
+				CMP R2, TERMINADO
+				JEQ go_fim
 					
-					MOV R1, energia
-					MOV R2, [R1]
-					CMP R2, 0
-					JLE go_terminado
+				MOV R1, energia
+				MOV R2, [R1]
+				CMP R2, 0
+				JLE go_terminado
 					
-					CALL detecta_colisao_aliens			; saida em R9
-					CMP R9, 1
-					JNE go_fim
+				CALL detecta_colisao_aliens			; saida em R9
+				CMP R9, 1
+				JNE go_fim
 					
-go_terminado:				DI
+go_terminado:			DI
 					
-					MOV R2, 0
-					MOV [R1], R2 					; energia a zero
+				MOV R2, 0
+				MOV [R1], R2 					; energia a zero
 				
-					MOV R2, TERMINADO				; muda o estado de jogo para terminado
-					MOV [R3], R2
+				MOV R2, TERMINADO				; muda o estado de jogo para terminado
+				MOV [R3], R2
 					
-					MOV R2, redesenha				; activar flag, para redesenhar
-					MOV R1, 1
-					MOV [R2], R1
+				MOV R2, redesenha				; activar flag, para redesenhar
+				MOV R1, 1
+				MOV [R2], R1
 					
-					MOV R2, redesenha_energia			; activar flag, para redesenhar energia
-					MOV R1, 1
-					MOV [R2], R1
+				MOV R2, redesenha_energia			; activar flag, para redesenhar energia
+				MOV R1, 1
+				MOV [R2], R1
 					
-go_fim:					POP R9
-					POP R3
-					POP R2
-					POP R1		
-					RET 
+go_fim:				POP R9
+				POP R3
+				POP R2
+				POP R1		
+				RET 
 
 ; *********************************************************************************
 ; * Descri��o:	Desenha aliens e nave
@@ -422,45 +422,45 @@ fim_if:				MOVB [R3], R8
 ; * Destr�i:	--
 ; *********************************************************************************
 
-mover_aliens: 				PUSH R1
-					PUSH R2
-					PUSH R3
-					PUSH R4
-					PUSH R5
-					PUSH R6
+mover_aliens: 			PUSH R1
+				PUSH R2
+				PUSH R3
+				PUSH R4
+				PUSH R5
+				PUSH R6
 				
-					MOV R5, 0 				; inicializa variavel de indice
-					MOV R6, N_ALIENS 			; inicializa numero de aliens (N)
-					SHL R6, 1				; N_ALIENS * 2
-					MOV R3, alien_x
-					MOV R4, alien_y
+				MOV R5, 0 				; inicializa variavel de indice
+				MOV R6, N_ALIENS 			; inicializa numero de aliens (N)
+				SHL R6, 1				; N_ALIENS * 2
+				MOV R3, alien_x
+				MOV R4, alien_y
 
 
-percorre_aliens1:			CMP R5, R6
-					JGE terminou1
+percorre_aliens1:		CMP R5, R6
+				JGE terminou1
 					
-					MOV R1, [R3+R5]				; alien_x
-					MOV R2, [R4+R5]				; alien_y
+				MOV R1, [R3+R5]				; alien_x
+				MOV R2, [R4+R5]				; alien_y
 
-					CALL andar_alien			; modifica R1 e R2
+				CALL andar_alien			; modifica R1 e R2
 					
-					MOV [R3+R5], R1				; actualiza em memoria
-					MOV [R4+R5], R2 
+				MOV [R3+R5], R1				; actualiza em memoria
+				MOV [R4+R5], R2 
 					
-					ADD R5, 2				; par/impar	
-					JMP percorre_aliens1
+				ADD R5, 2				; par/impar	
+				JMP percorre_aliens1
 
-terminou1:				MOV R2, redesenha			; activar flag, para redesenhar
-					MOV R1, 1
-					MOV [R2], R1
+terminou1:			MOV R2, redesenha			; activar flag, para redesenhar
+				MOV R1, 1
+				MOV [R2], R1
 
-					POP R6
-					POP R5
-					POP R4
-					POP R3
-					POP R2
-					POP R1
-					RET
+				POP R6
+				POP R5
+				POP R4
+				POP R3
+				POP R2
+				POP R1
+				RET
 
 ; *********************************************************************************
 ; * Descri��o:	Andar aliens
@@ -845,7 +845,7 @@ abe_escreve:			MOV [R2], R1
 
 ; *********************************************************************************
 ; * Descri��o:		Verifica se existe colisao entre objectos.
-;					|x_1 - x_2 | <= d AND |y_1 - y_2| <= d
+;			|x_1 - x_2 | <= d AND |y_1 - y_2| <= d
 ; * Entrada:		R1 (x do objecto 1)
 ;			R2 (y do objecto 1)
 ;			R3 (x do objecto 2)
