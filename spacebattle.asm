@@ -2,7 +2,7 @@
 ; * Jogo Batalha Espacial
 ; * Arquitectura de Computadores (2012/2013)
 ; *
-; * Autores:  Paulo Cabe�as   76358
+; * Autores:  Paulo Cabeças   76358
 ; *           Marisa Roque    76653
 ; *           Sara Santos     76358
 ; *********************************************************************************
