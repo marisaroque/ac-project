@@ -246,9 +246,9 @@ relogio_aliens:
 
 ; *********************************************************************************
 ; * Descrição:	Detecta fim de jogo, por colisão ou falta de energia
-; * Entrada:		--
-; * Saída:	 	--
-; * Destrói:		--
+; * Entrada:	--
+; * Saída:	--
+; * Destrói:	--
 ; *********************************************************************************
 
 detecta_game_over:
@@ -749,12 +749,12 @@ da_fim:				POP R11
 				RET 
 				
 ; *********************************************************************************
-; * Descrição:		Verifica se a ponta do raio colide com alien.
-; * Entrada:		R0 (offset das tabelas alien_x, alien_y, alien_x_inicial, alien_y_inicial
-;			R3 (x_raio)
-;			R4 (y_raio)
-; * Saída:		--
-; * Destrói: 		-- 
+; * Descrição:	Verifica se a ponta do raio colide com alien.
+; * Entrada:	R0 (offset das tabelas alien_x, alien_y, alien_x_inicial, alien_y_inicial
+;		R3 (x_raio)
+;		R4 (y_raio)
+; * Saída:	--
+; * Destrói: 	-- 
 ; *********************************************************************************
 detecta_ataque_alien:
 				PUSH R0
@@ -808,10 +808,10 @@ daa_fim:			POP R11
 				RET
 				
 ; *********************************************************************************
-; * Descrição:		Incrementa a energia da NAVE, depois da morte de um alien.
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Incrementa a energia da NAVE, depois da morte de um alien.
+; * Entrada:	--
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 add_bonus_energia:
 				PUSH R1
@@ -875,10 +875,10 @@ positivo_y:			CMP R4, R5
 dc_fim:				RET
 
 ; *********************************************************************************
-; * Descrição:		Verifica se existe colisão entre os aliens e a nave.
-; * Entrada:		--
-; * Saída:		R9 (Colisao = 1 / Sem colisao = 0)
-; * Destrói: 		--
+; * Descrição:	Verifica se existe colisão entre os aliens e a nave.
+; * Entrada:	--
+; * Saída:	R9 (Colisao = 1 / Sem colisao = 0)
+; * Destrói: 	--
 ; *********************************************************************************
 detecta_colisao_aliens:
 				PUSH R0
@@ -1094,7 +1094,7 @@ fim1:				MOV R2, redesenha			; activar flag, para redesenhar
 ;
 ; * Saída:	R3 (posição x do raio)
 ;		R4 (posição y do raio)
-; * Destrói: 		--
+; * Destrói: 	--
 ; *********************************************************************************
 coordenadas_raio:
 				PUSH R5
