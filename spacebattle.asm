@@ -1751,7 +1751,7 @@ invoca_accao:
 
 				MOV R7, R10
 				MOV R10, [R6]
-				MOV [R6], R7						; guarda a tecla premida nesta itera��o para a próxima
+				MOV [R6], R7						; guarda a tecla premida nesta iteração para a próxima
 
 				MOV R1, [R1]						; R1 = 1 se houve transição entre tecla pressionada e não pressionada
 				CMP R1, 0						; testar se alguma transição foi detectada
