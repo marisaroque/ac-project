@@ -31,14 +31,14 @@ TERMINADO		EQU 2			; estado_jogo: jogo terminado
 ; *********************************************************************************
 ENERGIA_INICIAL		EQU 80
 ENERGIA_MAXIMO		EQU 99
-BONUS_ENERGIA		EQU 10		; valor do bonus de energia ao destruir um alien
-N_ALIENS		EQU 4		; numero de aliens
+BONUS_ENERGIA		EQU 10			; valor do bonus de energia ao destruir um alien
+N_ALIENS		EQU 4			; numero de aliens
 NAVE_X_INICIAL		EQU 20
 NAVE_Y_INICIAL		EQU 15
 ORIENTACAO_INICIAL	EQU 1
 RAIO_INICIAL		EQU 0
 ENERGIA_TEMP		EQU 2
-TAMANHO_RAIO		EQU 5		; tamanho do raio, a contar do centro da nave
+TAMANHO_RAIO		EQU 5			; tamanho do raio, a contar do centro da nave
 ALIEN_X0_INICIAL    	EQU 30
 ALIEN_Y0_INICIAL    	EQU 30
 ALIEN_X1_INICIAL    	EQU 1
@@ -50,11 +50,11 @@ ALIEN_Y3_INICIAL    	EQU 30
 ; *********************************************************************************
 ; * Stack 
 ; *********************************************************************************
-PLACE			1000H		; localiza blocos de dados
+PLACE			1000H			; localiza blocos de dados
 			
-pilha:			TABLE 200H	; espa�o reservado para a pilha 
+pilha:			TABLE 200H		; espa�o reservado para a pilha 
 
-SP_inicial:				; este � o endere�o com que o SP deve ser inicializado. 
+SP_inicial:					; este � o endere�o com que o SP deve ser inicializado. 
 
 ; *********************************************************************************
 ; * Dados
@@ -77,7 +77,7 @@ table_nave: 			WORD 00000111b	; 1a linha
 				WORD 00000111b	; 3a linha
 
 
-table_x: 			WORD 0			; componente no eixo y da direcao no sistema de eixos do ecra
+table_x: 			WORD 0		; componente no eixo y da direcao no sistema de eixos do ecra
 				WORD 1
 				WORD 1
 				WORD 1
@@ -86,7 +86,7 @@ table_x: 			WORD 0			; componente no eixo y da direcao no sistema de eixos do ec
 				WORD -1
 				WORD -1
 
-table_y: 			WORD -1			; componente no eixo y da direcao no sistema de eixos do ecra
+table_y: 			WORD -1		; componente no eixo y da direcao no sistema de eixos do ecra
 				WORD -1
 				WORD 0
 				WORD 1
@@ -95,9 +95,9 @@ table_y: 			WORD -1			; componente no eixo y da direcao no sistema de eixos do e
 				WORD 0
 				WORD -1	
 
-teclado_direccao: 		WORD 7			; tabela para converter as teclas em orientacoes
-				WORD 0			; o valor da tecla sera o indice 
-				WORD 1			; usa-se -1 para perfazer uma tabela de 16 entradas
+teclado_direccao: 		WORD 7		; tabela para converter as teclas em orientacoes
+				WORD 0		; o valor da tecla sera o indice 
+				WORD 1		; usa-se -1 para perfazer uma tabela de 16 entradas
 				WORD -1
 				WORD 6
 				WORD -1
