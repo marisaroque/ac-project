@@ -295,9 +295,9 @@ go_fim:				POP R9
 
 ; *********************************************************************************
 ; * Descrição:	Desenha aliens e nave
-; * Entrada:		--
-; * Saída:	 	--
-; * Destrói:		--
+; * Entrada:	--
+; * Saída:	--
+; * Destrói:	--
 ; *********************************************************************************
 desenha_tudo:
 				PUSH R0
@@ -569,7 +569,7 @@ desenha_alien:
 ; *********************************************************************************
 ; * Descrição:	Desenha um nave no ecra com base nas coordenadas X e Y, que é o seu centro.
 ; * Entrada:	--
-; * Saída:	 --
+; * Saída:	--
 ; * Destrói:	--
 ; *********************************************************************************
 
@@ -681,10 +681,10 @@ fim_nave:			MOV R1, R3						; restore de R1 (x_centro)
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Verifica ataque aos aliens.
-; * Entrada:		--
+; * Descrição:	Verifica ataque aos aliens.
+; * Entrada:	--
 ; * Saída:	--
-; * Destrói: 		-- 
+; * Destrói:	-- 
 ; *********************************************************************************
 detecta_ataque:
 				PUSH R0
@@ -934,9 +934,9 @@ dca_fim_loop:			POP R10
 			
 ; *********************************************************************************
 ; * Descrição:	Incrementa o indice da direccao do canhao, fazendo-o virar à direita.
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Entrada:	--
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 gira_direita: 	
 				PUSH R1
@@ -1009,9 +1009,9 @@ fim:				MOV R2, redesenha			; activar flag, para redesenhar
 
 ; *********************************************************************************
 ; * Descrição:	Decrementa o indice da direccao do canhão, fazendo-o virar à esquerda.
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Entrada:	--
+; * Saída:	--
+; * Destrói:	--
 ; *********************************************************************************
 
 gira_esquerda: 
@@ -1127,8 +1127,8 @@ coordenadas_raio:
 ; *********************************************************************************
 ; * Descrição:	Função que desenha o canhão da nave.
 ; * Entrada:	R1 ( posição x do centro da nave )
-;				R2 ( posicao y do centro da nave )
-; * Saída:		--
+;		R2 ( posicao y do centro da nave )
+; * Saída:	--
 ; * Destrói: 	--
 ; *********************************************************************************
 
@@ -1158,8 +1158,8 @@ desenha_canhao:
 ; *********************************************************************************
 ; * Descrição:	Função que desenha o raio da nave.
 ; * Entrada:	R1 ( posição x do centro da nave )
-;				R2 ( posição y do centro da nave )
-; * Saída:		--
+;		R2 ( posição y do centro da nave )
+; * Saída:	--
 ; * Destrói: 	--
 ; *********************************************************************************
 
@@ -1219,10 +1219,10 @@ dr_fim:				POP R10
 
 
 ; *********************************************************************************
-; * Descrição:		Função que altera a posição da nave.
-; * Entrada:		R10 (Tecla premida)
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Função que altera a posição da nave.
+; * Entrada:	R10 (Tecla premida)
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 
 andar: 
@@ -1359,10 +1359,10 @@ fim_andar_y:			MOV R7, energia
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Função que activa/desactiva o raio.
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Função que activa/desactiva o raio.
+; * Entrada:	--
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 
 disparar: 		
@@ -1413,10 +1413,10 @@ dispa_fim:			POP R6
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Interrompe o jogo até ser chamada novamente ou o jogo recomeçado.
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Interrompe o jogo até ser chamada novamente ou o jogo recomeçado.
+; * Entrada:	--
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 
 pausa: 
@@ -1446,10 +1446,10 @@ p_fim:				MOV [R0], R1
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Função vazia para preencher na tabela de acções do teclado. 
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Função vazia para preencher na tabela de acções do teclado. 
+; * Entrada:	--
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 
 nada: 		
@@ -1457,10 +1457,10 @@ nada:
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Pára o jogo independentemente do estado actual.
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Pára o jogo independentemente do estado actual.
+; * Entrada:	--
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 sair: 
 				PUSH R0
@@ -1483,10 +1483,10 @@ sair:
 
 
 ; *********************************************************************************
-; * Descrição:		Recomeça o jogo, independentemente do estado actual.
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Recomeça o jogo, independentemente do estado actual.
+; * Entrada:	--
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 reset:
 				PUSH R0
@@ -1622,10 +1622,10 @@ fim_preenche:			POP 	R3			; restaura registos
 
 
 ; *********************************************************************************
-; * Descrição:		Função que faz a descodificação da tecla que foi premida.
-; * Entrada:		--
-; * Saída:		R10 (Tecla premida)
-; * Destrói: 		--
+; * Descrição:	Função que faz a descodificação da tecla que foi premida.
+; * Entrada:	--
+; * Saída:	R10 (Tecla premida)
+; * Destrói: 	--
 ; *********************************************************************************
 
 teclado:	
@@ -1683,10 +1683,10 @@ teclado_fim:			POP R8
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Detectar flanco ascendente e descendente da tecla.
-; * Entrada:		R10 (Tecla premida)
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Detectar flanco ascendente e descendente da tecla.
+; * Entrada:	R10 (Tecla premida)
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 
 detecta_flancos:
@@ -1728,10 +1728,10 @@ dflancos_fim:			POP R4
 				
 				
 ; *********************************************************************************
-; * Descrição:		Determina qual a acção a realizar e executa-a.
-; * Entrada:		R10 (tecla premida)
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Determina qual a acção a realizar e executa-a.
+; * Entrada:	R10 (tecla premida)
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************	
 invoca_accao:
 				PUSH R0
@@ -1785,10 +1785,10 @@ ia_fim:				MOV R10, R7						; repor tecla premida
 				RET
 
 ; *********************************************************************************
-; * Descrição:		Mostra energia nos displays.
-; * Entrada:		--
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Mostra energia nos displays.
+; * Entrada:	--
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 
 mostra_energia:
@@ -1804,10 +1804,10 @@ mostra_energia:
 				RET
 				
 ; *********************************************************************************
-; * Descrição:		Mostra em formato decimal nos dois displays.
-; * Entrada:		R10 (valor em hexadecimal)
-; * Saída:		--
-; * Destrói: 		--
+; * Descrição:	Mostra em formato decimal nos dois displays.
+; * Entrada:	R10 (valor em hexadecimal)
+; * Saída:	--
+; * Destrói: 	--
 ; *********************************************************************************
 
 display:
